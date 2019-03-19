@@ -1,0 +1,7 @@
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\bin\x86\Release\ProbUTest.dll
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\bin\x86\Release\ProbUTest.pdb
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\bin\x86\Release\ProbeGateway.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\bin\x86\Release\ProbeGateway.pdb
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\obj\x86\Release\ProbUTest.csprojResolveAssemblyReference.cache
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\obj\x86\Release\ProbUTest.dll
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbUTest\obj\x86\Release\ProbUTest.pdb
