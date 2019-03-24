@@ -13,7 +13,7 @@ namespace SelfHost
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://10.112.179.196:8080/ProbeAPI");
+            Uri baseAddress = new Uri("http://127.0.0.1:8080/ProbeAPI");
             //var APIs = new ProbeGateway.APIs();
             // Create the ServiceHost.
             using (ServiceHost host = new ServiceHost(typeof(ProbeGateway.ProbeSensor), baseAddress))
@@ -45,7 +45,7 @@ namespace SelfHost
 
                 //Start file maintenance job
                 Thread fileMainJob = new Thread(new ThreadStart(FMThread));
-
+                fileMainJob.Start();
                 Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
@@ -58,6 +58,10 @@ namespace SelfHost
 
         private static void FMThread()
         {
+            for (int i = 1; i < 30; i++)
+            {
+                Console.WriteLine("thread started");
+            }
             //while 
         }
 

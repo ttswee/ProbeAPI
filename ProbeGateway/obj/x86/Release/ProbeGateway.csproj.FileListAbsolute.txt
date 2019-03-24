@@ -4,3 +4,9 @@ C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\bin\x86\Release\ProbeGa
 C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\x86\Release\ProbeGateway.exe
 C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\x86\Release\ProbeGateway.pdb
 C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\x86\Release\ProbeGateway.csprojResolveAssemblyReference.cache
+C:\ProbeAPI\ProbeGateway\bin\x86\Release\ProbeGateway.exe.config
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.exe
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.pdb
+C:\ProbeAPI\ProbeGateway\bin\x86\Release\ProbeGateway.exe
+C:\ProbeAPI\ProbeGateway\bin\x86\Release\ProbeGateway.pdb
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.csprojResolveAssemblyReference.cache

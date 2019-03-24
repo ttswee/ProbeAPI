@@ -9,34 +9,51 @@ using System.IO;
 
 namespace FileMaintenance
 {
-    enum Interval
-    { Day = 0, Month = 1, Year = 2 }
+    public enum JobInterval
+    { Day = 0, Month = 1 }
 
-    enum SpecificDay
+    public enum SpecialDay
     {
-        FirstDayOfMonth = 0,
-        LastDayOfMonth = 1
+        NotInUse = 0,
+        FirstDayOfMonth = 1,
+        LastDayOfMonth = 2
     }
+
+    public enum KeepIntervalType { Days = 0, Month = 1, Year = 2 }
+
+
+    public  enum  JobType { Delete = 0, Move = 1 }
 
     [XmlType("MaintenanceSchedule")]
     [Serializable]
     public class MaintSch
     {
-        //[System.Xml.Serialization.XmlAnyElement("FolderName")]
+        public string JobName { get; set; }
+        public JobType JobType { get; set; }
         public string FolderName { get; set; }
-        // [System.Xml.Serialization.XmlAnyElement("IntervalType")]
-        public int Interval { get; set; }
-        // [System.Xml.Serialization.XmlAnyElement("IntervalNum")]
-        public int IntervalNum { get; set; }
-        //  [System.Xml.Serialization.XmlAnyElement("SpecificDay")]
-        public int SpecificDay { get; set; }
-        //  [System.Xml.Serialization.XmlAnyElement("TopFolderOnly")]
+        public string TargetFolderName { get; set; }
+        public JobInterval Interval { get; set; } //job run interval
+        public SpecialDay SpecificDay { get; set; } // the job only run on specific day of the month
         public bool IncludeSubFolder { get; set; }
+        public bool IsJobActive { get; set; }
+        public int IntervalToKeep { get; set; } //How many days/month/year to be purge/move
+        public KeepIntervalType KeepIntervalsType { get; set; }
 
-
-        public MaintSch()
+        public override bool Equals(object obj)
         {
+            var NewJob = obj as MaintSch;
+            if (JobType != NewJob.JobType || Interval != NewJob.Interval || FolderName != NewJob.FolderName || IncludeSubFolder != NewJob.IncludeSubFolder || JobType != NewJob.JobType)
+                return false;
+            if (TargetFolderName != NewJob.TargetFolderName || SpecificDay != NewJob.SpecificDay)
+                return false;
+            return true;
         }
+
+        public bool validateNewJob()
+        {
+            return true;
+        }
+
     }
 
     public class MSch
@@ -44,7 +61,7 @@ namespace FileMaintenance
         [System.Xml.Serialization.XmlArray]
         public List<MaintSch> MSchedule = new List<MaintSch>();
 
-        public bool addSchedule(string folderName, int IntervalType, int IntervalNum, int SpecificDay, bool TopOnly)
+        public bool addSchedule(MaintSch newJob)
         {
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml"))
             {
@@ -53,15 +70,15 @@ namespace FileMaintenance
                     XmlSerializer DesSchedule = new XmlSerializer(typeof(List<MaintSch>));
                     MSchedule = (List<MaintSch>)DesSchedule.Deserialize(reader);
                 }
-
-                var existingfolder = MSchedule.Any(x => x.FolderName == folderName);
+                //todo : check for duplicates
+                var existingfolder = MSchedule.Exists(x => x.Equals(newJob));
                 try
                 {
                     if (existingfolder)
                     {
                         throw new Exception("Folder setting Exist");
                     }
-                    MSchedule.Add(new MaintSch { FolderName = folderName, Interval = IntervalType, IntervalNum = IntervalNum, SpecificDay = SpecificDay, IncludeSubFolder = TopOnly });
+                    MSchedule.Add(newJob);
                 }
                 catch
                 {
@@ -71,10 +88,7 @@ namespace FileMaintenance
             }
             else
             {
-                //using (Stream reader = new FileStream("MaintenanceSchedule.xml", FileMode.OpenOrCreate))
-                //{
-                MSchedule.Add(new MaintSch { FolderName = folderName, Interval = IntervalType, IntervalNum = IntervalNum, SpecificDay = SpecificDay, IncludeSubFolder = TopOnly });
-                //}
+                MSchedule.Add(newJob);
             }
 
             var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
