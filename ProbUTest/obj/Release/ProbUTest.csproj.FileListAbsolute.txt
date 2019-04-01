@@ -12,3 +12,5 @@ C:\ProbeAPI\ProbUTest\bin\Release\ProbUTest.dll
 C:\ProbeAPI\ProbUTest\bin\Release\ProbUTest.pdb
 C:\ProbeAPI\ProbUTest\bin\Release\ProbeGateway.exe
 C:\ProbeAPI\ProbUTest\bin\Release\ProbeGateway.pdb
+C:\ProbeAPI\ProbUTest\bin\Release\FileMaintenance.dll
+C:\ProbeAPI\ProbUTest\bin\Release\FileMaintenance.pdb

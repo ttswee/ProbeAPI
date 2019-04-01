@@ -49,10 +49,7 @@ namespace FileMaintenance
             return true;
         }
 
-        public bool validateNewJob()
-        {
-            return true;
-        }
+
 
     }
 
@@ -60,17 +57,13 @@ namespace FileMaintenance
     {
         [System.Xml.Serialization.XmlArray]
         public List<MaintSch> MSchedule = new List<MaintSch>();
-
+        public string _AppPath { get; set; }
+        private string  _JobConfigurateFileName = "JobsConfig.xml";
         public bool addSchedule(MaintSch newJob)
         {
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml"))
+            if (File.Exists(Path.Combine(_AppPath,_JobConfigurateFileName)))
             {
-                using (Stream reader = new FileStream(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml", FileMode.Open))
-                {
-                    XmlSerializer DesSchedule = new XmlSerializer(typeof(List<MaintSch>));
-                    MSchedule = (List<MaintSch>)DesSchedule.Deserialize(reader);
-                }
-                //todo : check for duplicates
+                MSchedule = GetAllJobs();
                 var existingfolder = MSchedule.Exists(x => x.Equals(newJob));
                 try
                 {
@@ -91,12 +84,39 @@ namespace FileMaintenance
                 MSchedule.Add(newJob);
             }
 
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
+            var path = Path.Combine(_AppPath,_JobConfigurateFileName);//Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
             System.Xml.Serialization.XmlSerializer writer =
                      new System.Xml.Serialization.XmlSerializer(MSchedule.GetType());
             System.IO.FileStream file = System.IO.File.Create(path);
             writer.Serialize(file, MSchedule);
             return true;
+        }
+
+        public List<MaintSch> GetAllJobs()
+        {
+            if (File.Exists(Path.Combine(_AppPath, _JobConfigurateFileName)))
+            {
+                using (Stream reader = new FileStream(Path.Combine(_AppPath, _JobConfigurateFileName), FileMode.Open))
+                {
+                    XmlSerializer DesSchedule = new XmlSerializer(typeof(List<MaintSch>));
+                    MSchedule = (List<MaintSch>)DesSchedule.Deserialize(reader);
+                }
+                return MSchedule;
+            }
+            return new List<MaintSch>();
+        }
+
+        public bool ExecuteJobs()
+        {
+            List<MaintSch> _JobList = GetAllJobs();
+            MaintenanceJobs _JobExecuter = new MaintenanceJobs();
+            bool JobResult = false;
+            foreach (MaintSch _Job in _JobList)
+            {
+                _JobExecuter._jobToExectute = _Job;
+                JobResult = _JobExecuter.RunJob();
+            }
+            return false;
         }
 
     }

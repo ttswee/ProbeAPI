@@ -76,16 +76,6 @@
     <None Include="App.config" />
     <None Include="Properties\DataSources\ProbeGateway.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\SelfHost.DriveSpaces.datasource" />
-    <None Include="Service References\probeAPI\ProbeAPI.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeAPI1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeAPI2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeSensor.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProbeGateway\ProbeGateway.csproj">
@@ -103,19 +93,32 @@
     <WCFMetadataStorage Include="Service References\probeAPI\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\probeAPI\ProbeAPI.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\probeAPI\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\probeAPI\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\probeAPI\ProbeAPI3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\probeAPI\ProbeAPI31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\probeAPI\ProbeAPI32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\probeAPI\ProbeAPI33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\probeAPI\ProbeSensor1.wsdl" />
     <None Include="Service References\probeAPI\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\probeAPI\ProbeAPI1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,9 +17,6 @@ namespace SensorTester.probeAPI {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISpaceProbe/GetDriveInfo", ReplyAction="http://tempuri.org/ISpaceProbe/GetDriveInfoResponse")]
         ProbeGateway.DriveSpaces[] GetDriveInfo();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISpaceProbe/GetFolderInfo", ReplyAction="http://tempuri.org/ISpaceProbe/GetFolderInfoResponse")]
-        string GetFolderInfo();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -52,8 +49,44 @@ namespace SensorTester.probeAPI {
         public ProbeGateway.DriveSpaces[] GetDriveInfo() {
             return base.Channel.GetDriveInfo();
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="probeAPI.IFolderMaintenance")]
+    public interface IFolderMaintenance {
         
-        public string GetFolderInfo() {
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFolderMaintenance/GetFolderInfo", ReplyAction="http://tempuri.org/IFolderMaintenance/GetFolderInfoResponse")]
+        System.IO.FileInfo[] GetFolderInfo();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IFolderMaintenanceChannel : SensorTester.probeAPI.IFolderMaintenance, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FolderMaintenanceClient : System.ServiceModel.ClientBase<SensorTester.probeAPI.IFolderMaintenance>, SensorTester.probeAPI.IFolderMaintenance {
+        
+        public FolderMaintenanceClient() {
+        }
+        
+        public FolderMaintenanceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public FolderMaintenanceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FolderMaintenanceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FolderMaintenanceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.IO.FileInfo[] GetFolderInfo() {
             return base.Channel.GetFolderInfo();
         }
     }

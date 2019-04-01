@@ -9,9 +9,13 @@ namespace FMaintenaceUnitTest
         [TestMethod]
         public void TestAddJobConfig()
         {
-                var newJob = new MaintSch() { JobType = JobType.Move, Interval = JobInterval.Day, SpecificDay = SpecialDay.NotInUse, IntervalToKeep = 30, IncludeSubFolder = false, FolderName = "C:\\test\\", TargetFolderName = "" };
+                var newJob = new MaintSch() { JobType = JobType.Move, Interval = JobInterval.Month, SpecificDay = SpecialDay.NotInUse, IntervalToKeep = 2, IncludeSubFolder = false, FolderName = "C:\\inetpub\\temp\\", TargetFolderName = "c:\\temp",JobName="FirstTest",IsJobActive=true,KeepIntervalsType=KeepIntervalType.Month };
                 MSch MJobTest = new MSch();
+                MJobTest._AppPath = "C:\\ProbeAPI\\ProbeGateway\\bin\\Release";
                 Assert.IsTrue(MJobTest.addSchedule(newJob));
+
+
+
         }
 
         [TestMethod]

@@ -18,14 +18,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.112.179.196:8080/probeapi" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://127.0.0.1:8080/probeapi" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ProbeAPI.xsd" MetadataType="Schema" ID="891653cb-605d-4b45-adc4-820414f462f6" SourceId="1" SourceUrl="http://10.112.179.196:8080/ProbeAPI?xsd=xsd2" />
-    <MetadataFile FileName="ProbeAPI1.xsd" MetadataType="Schema" ID="9bf3a2ca-0b30-42de-b0aa-dfd483fec393" SourceId="1" SourceUrl="http://10.112.179.196:8080/ProbeAPI?xsd=xsd0" />
-    <MetadataFile FileName="ProbeSensor.wsdl" MetadataType="Wsdl" ID="fafb6854-dd12-43be-8b78-b098e658e83e" SourceId="1" SourceUrl="http://10.112.179.196:8080/ProbeAPI?wsdl" />
-    <MetadataFile FileName="ProbeAPI2.xsd" MetadataType="Schema" ID="06909d54-6b1d-48af-8d8b-f68016cf2957" SourceId="1" SourceUrl="http://10.112.179.196:8080/ProbeAPI?xsd=xsd1" />
-    <MetadataFile FileName="ProbeAPI.disco" MetadataType="Disco" ID="8689c451-7580-4c1c-b5e2-295ad6b96637" SourceId="1" SourceUrl="http://10.112.179.196:8080/ProbeAPI?disco" />
+    <MetadataFile FileName="ProbeAPI3.xsd" MetadataType="Schema" ID="858eb4e7-f0ab-4a58-b461-222710e1450f" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?xsd=xsd0" />
+    <MetadataFile FileName="ProbeAPI1.disco" MetadataType="Disco" ID="7b373099-f78d-4424-8c13-8e109b658b8c" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?disco" />
+    <MetadataFile FileName="ProbeAPI31.xsd" MetadataType="Schema" ID="200b3702-2b9e-4c62-8e5b-c28ad56ffe95" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?xsd=xsd1" />
+    <MetadataFile FileName="ProbeSensor1.wsdl" MetadataType="Wsdl" ID="b5d95f95-f53e-4daa-b6b1-f6dbf79a465e" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?wsdl" />
+    <MetadataFile FileName="ProbeAPI32.xsd" MetadataType="Schema" ID="3bb1f27a-7884-46a1-9f4c-c9a016afd410" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?xsd=xsd2" />
+    <MetadataFile FileName="ProbeAPI33.xsd" MetadataType="Schema" ID="ee516809-aad4-4b37-93a4-f060da2dae9a" SourceId="1" SourceUrl="http://127.0.0.1:8080/ProbeAPI?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

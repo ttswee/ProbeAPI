@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.IO;
 using System.Threading;
-
+using FileMaintenance;
 namespace SelfHost
 {
     class Program
@@ -49,7 +49,7 @@ namespace SelfHost
                 Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
-               
+                fileMainJob.Abort();
                 // Close the ServiceHost.
                 host.Close();
             }
@@ -58,11 +58,21 @@ namespace SelfHost
 
         private static void FMThread()
         {
-            for (int i = 1; i < 30; i++)
+            while (1!=0)
             {
-                Console.WriteLine("thread started");
+                Thread.Sleep(5000);
+                MSch _MaintenanceJobs = new MSch();
+                _MaintenanceJobs._AppPath = Directory.GetCurrentDirectory();
+                List<MaintSch> _listOfJobs =   _MaintenanceJobs.GetAllJobs();
+                MaintenanceJobs _JobExcuter = new MaintenanceJobs();
+                bool jStatus = false;
+                foreach(MaintSch _Job in _listOfJobs)
+                {
+                    _JobExcuter._jobToExectute = _Job;
+                    jStatus = _JobExcuter.RunJob();
+                }
+                _MaintenanceJobs=null;
             }
-            //while 
         }
 
     }
