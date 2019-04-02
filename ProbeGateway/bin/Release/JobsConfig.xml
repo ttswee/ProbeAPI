@@ -3,13 +3,13 @@
   <MaintenanceSchedule>
     <JobName>FirstTest</JobName>
     <JobType>Move</JobType>
-    <FolderName>C:\inetpub\temp\</FolderName>
+    <FolderName>c:\csi\</FolderName>
     <TargetFolderName>c:\temp</TargetFolderName>
-    <Interval>Month</Interval>
-    <SpecificDay>NotInUse</SpecificDay>
+    <SpecialDay>NotInUse</SpecialDay>
     <IncludeSubFolder>false</IncludeSubFolder>
     <IsJobActive>true</IsJobActive>
     <IntervalToKeep>2</IntervalToKeep>
     <KeepIntervalsType>Month</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
   </MaintenanceSchedule>
 </ArrayOfMaintenanceSchedule>

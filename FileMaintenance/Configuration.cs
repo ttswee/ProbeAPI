@@ -15,14 +15,13 @@ namespace FileMaintenance
     public enum SpecialDay
     {
         NotInUse = 0,
-        FirstDayOfMonth = 1,
-        LastDayOfMonth = 2
+        LastDayOfMonth = 1
     }
 
     public enum KeepIntervalType { Days = 0, Month = 1, Year = 2 }
 
-
-    public  enum  JobType { Delete = 0, Move = 1 }
+    
+    public  enum  JobType { Delete = 0, Move = 1, Compress = 2 }
 
     [XmlType("MaintenanceSchedule")]
     [Serializable]
@@ -32,19 +31,19 @@ namespace FileMaintenance
         public JobType JobType { get; set; }
         public string FolderName { get; set; }
         public string TargetFolderName { get; set; }
-        public JobInterval Interval { get; set; } //job run interval
-        public SpecialDay SpecificDay { get; set; } // the job only run on specific day of the month
+        public SpecialDay SpecialDay { get; set; } // the job only run on specific day of the month
         public bool IncludeSubFolder { get; set; }
         public bool IsJobActive { get; set; }
         public int IntervalToKeep { get; set; } //How many days/month/year to be purge/move
         public KeepIntervalType KeepIntervalsType { get; set; }
+        public int SpecificDay { get; set; }
 
         public override bool Equals(object obj)
         {
             var NewJob = obj as MaintSch;
-            if (JobType != NewJob.JobType || Interval != NewJob.Interval || FolderName != NewJob.FolderName || IncludeSubFolder != NewJob.IncludeSubFolder || JobType != NewJob.JobType)
+            if (JobType != NewJob.JobType || FolderName != NewJob.FolderName || IncludeSubFolder != NewJob.IncludeSubFolder || JobType != NewJob.JobType)
                 return false;
-            if (TargetFolderName != NewJob.TargetFolderName || SpecificDay != NewJob.SpecificDay)
+            if (TargetFolderName != NewJob.TargetFolderName || SpecificDay != NewJob.SpecificDay || SpecificDay != NewJob.SpecificDay)
                 return false;
             return true;
         }

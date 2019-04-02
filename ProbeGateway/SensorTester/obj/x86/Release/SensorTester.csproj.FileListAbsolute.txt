@@ -1,0 +1,8 @@
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\bin\x86\Release\SensorTester.exe.config
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\bin\x86\Release\SensorTester.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\bin\x86\Release\SensorTester.pdb
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\obj\x86\Release\SensorTester.csprojResolveAssemblyReference.cache
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\obj\x86\Release\SensorTester.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\obj\x86\Release\SensorTester.pdb
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\bin\x86\Release\ProbeGateway.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\SensorTester\bin\x86\Release\ProbeGateway.pdb

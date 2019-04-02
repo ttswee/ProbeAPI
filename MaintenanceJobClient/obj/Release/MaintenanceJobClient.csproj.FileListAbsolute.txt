@@ -1,0 +1,8 @@
+C:\probeapi\MaintenanceJobClient\bin\Release\MaintenanceJobClient.exe.config
+C:\probeapi\MaintenanceJobClient\bin\Release\MaintenanceJobClient.exe
+C:\probeapi\MaintenanceJobClient\bin\Release\MaintenanceJobClient.pdb
+C:\probeapi\MaintenanceJobClient\bin\Release\FileMaintenance.dll
+C:\probeapi\MaintenanceJobClient\bin\Release\FileMaintenance.pdb
+C:\probeapi\MaintenanceJobClient\obj\Release\MaintenanceJobClient.csprojResolveAssemblyReference.cache
+C:\probeapi\MaintenanceJobClient\obj\Release\MaintenanceJobClient.exe
+C:\probeapi\MaintenanceJobClient\obj\Release\MaintenanceJobClient.pdb

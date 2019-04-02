@@ -1,0 +1,113 @@
+Source file = c:\csi\CRES MY Housekeep (CCPL).7z, TargetFile = c:\temp\CRES MY Housekeep (CCPL).7z
+Source file = c:\csi\CRES MY Housekeep (CCPL).7z.gz, TargetFile = c:\temp\CRES MY Housekeep (CCPL).7z.gz
+Source file = c:\csi\CRES MY Housekeep (CCPL).xlsx, TargetFile = c:\temp\CRES MY Housekeep (CCPL).xlsx
+Source file = c:\csi\CRES MY Housekeep (CCPL).xlsx.gz, TargetFile = c:\temp\CRES MY Housekeep (CCPL).xlsx.gz
+Source file = c:\csi\data.xml, TargetFile = c:\temp\data.xml
+Source file = c:\csi\data.xml.gz, TargetFile = c:\temp\data.xml.gz
+Source file = c:\csi\delSche.xml, TargetFile = c:\temp\delSche.xml
+Source file = c:\csi\delSche.xml.gz, TargetFile = c:\temp\delSche.xml.gz
+Source file = c:\csi\FileToDel.xml, TargetFile = c:\temp\FileToDel.xml
+Source file = c:\csi\FileToDel.xml.gz, TargetFile = c:\temp\FileToDel.xml.gz
+Source file = c:\csi\LAPSFileGenerator.7z, TargetFile = c:\temp\LAPSFileGenerator.7z
+Source file = c:\csi\LAPSFileGenerator.7z.gz, TargetFile = c:\temp\LAPSFileGenerator.7z.gz
+Source file = c:\csi\PROD.txt, TargetFile = c:\temp\PROD.txt
+Source file = c:\csi\PROD.txt.gz, TargetFile = c:\temp\PROD.txt.gz
+Source file = c:\csi\tde.txt, TargetFile = c:\temp\tde.txt
+Source file = c:\csi\tde.txt.gz, TargetFile = c:\temp\tde.txt.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator.sln, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator.sln
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator.sln.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator.sln.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator.v11.suo, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator.v11.suo
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\App.config, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\App.config
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\App.config.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\App.config.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.Designer.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.Designer.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.Designer.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.Designer.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileGenerator.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileWriter.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileWriter.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\FileWriter.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\FileWriter.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\INIFile.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\INIFile.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\INIFile.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\INIFile.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\JobScheduler.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\JobScheduler.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\JobScheduler.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\JobScheduler.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.user, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.user
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.user.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\LAPSFileGenerator.vbproj.user.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\modMain.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\modMain.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\modMain.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\modMain.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.Designer.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.Designer.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.Designer.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.Designer.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.resx, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.resx
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.resx.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.resx.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\ProjectInstaller.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\CRQ000000820495_Update.txt, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\CRQ000000820495_Update.txt
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\CRQ000000820495_Update.txt.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\CRQ000000820495_Update.txt.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\EncryptDecryptFX.dll, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\EncryptDecryptFX.dll
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\EncryptDecryptFX.dll.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\EncryptDecryptFX.dll.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.config, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.config
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.config.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.config.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.exe.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.pdb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.pdb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.pdb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.pdb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.config, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.config
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.config.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.config.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.manifest, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.manifest
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.manifest.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.vshost.exe.manifest.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.xml, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.xml
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.xml.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\LAPSFileGenerator.xml.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\Processor.ini, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\Processor.ini
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\Processor.ini.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\Processor.ini.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.bat, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.bat
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.bat.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.bat.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.txt, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.txt
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.txt.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\TDE.txt.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\_20180524.log, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\_20180524.log
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\_20180524.log.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\bin\Debug\_20180524.log.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.Designer.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.Designer.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.Designer.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.Designer.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.myapp, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.myapp
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.myapp.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Application.myapp.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\AssemblyInfo.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\AssemblyInfo.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\AssemblyInfo.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\AssemblyInfo.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.Designer.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.Designer.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.Designer.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.Designer.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.resx, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.resx
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.resx.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Resources.resx.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.Designer.vb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.Designer.vb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.Designer.vb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.Designer.vb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.settings, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.settings
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.settings.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\My Project\Settings.settings.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferences.cache, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferences.cache
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferences.cache.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferences.cache.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.exe, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.exe
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.exe.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.exe.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.pdb, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.pdb
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.pdb.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.pdb.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.ProjectInstaller.resources, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.ProjectInstaller.resources
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.ProjectInstaller.resources.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.ProjectInstaller.resources.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.Resources.resources, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.Resources.resources
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.Resources.resources.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.Resources.resources.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.FileListAbsolute.txt, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.FileListAbsolute.txt
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.FileListAbsolute.txt.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.FileListAbsolute.txt.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.GenerateResource.Cache, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.GenerateResource.Cache
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.GenerateResource.Cache.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbproj.GenerateResource.Cache.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbprojResolveAssemblyReference.cache, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbprojResolveAssemblyReference.cache
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbprojResolveAssemblyReference.cache.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.vbprojResolveAssemblyReference.cache.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.xml, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.xml
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.xml.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\LAPSFileGenerator.xml.gz
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\TempPE\My Project.Resources.Designer.vb.dll, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\TempPE\My Project.Resources.Designer.vb.dll
+Source file = c:\csi\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\TempPE\My Project.Resources.Designer.vb.dll.gz, TargetFile = c:\temp\LAPSFileGenerator\LAPSFileGenerator\obj\Debug\TempPE\My Project.Resources.Designer.vb.dll.gz
+Source file = c:\csi\SP\prod.txt, TargetFile = c:\temp\SP\prod.txt
+Source file = c:\csi\SP\prod.txt.gz, TargetFile = c:\temp\SP\prod.txt.gz
+Source file = c:\csi\SP\prod_SP_LTV_LOANSTRUCTURE_drop_create.sql, TargetFile = c:\temp\SP\prod_SP_LTV_LOANSTRUCTURE_drop_create.sql
+Source file = c:\csi\SP\prod_SP_LTV_LOANSTRUCTURE_drop_create.sql.gz, TargetFile = c:\temp\SP\prod_SP_LTV_LOANSTRUCTURE_drop_create.sql.gz
+Source file = c:\csi\SP\SP_LTV_LOANSTRUCTURE_uatback.sql, TargetFile = c:\temp\SP\SP_LTV_LOANSTRUCTURE_uatback.sql
+Source file = c:\csi\SP\SP_LTV_LOANSTRUCTURE_uatback.sql.gz, TargetFile = c:\temp\SP\SP_LTV_LOANSTRUCTURE_uatback.sql.gz
+Source file = c:\csi\SP\uat.txt, TargetFile = c:\temp\SP\uat.txt
+Source file = c:\csi\SP\uat.txt.gz, TargetFile = c:\temp\SP\uat.txt.gz

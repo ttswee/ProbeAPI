@@ -1,0 +1,6 @@
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\bin\Debug\ProbeGateway.exe.config
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\bin\Debug\ProbeGateway.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\bin\Debug\ProbeGateway.pdb
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\Debug\ProbeGateway.csprojResolveAssemblyReference.cache
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\Debug\ProbeGateway.exe
+C:\Visual Studio 2012\Projects\ProbeGateway\ProbeGateway\obj\Debug\ProbeGateway.pdb
