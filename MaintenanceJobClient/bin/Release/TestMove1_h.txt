@@ -1,0 +1,18 @@
+Job Start Time : 4/9/2019 2:25:00 PM 
+Job End Time : 4/9/2019 2:25:00 PM 
+Total Files moved : 10 
+Job Start Time : 4/9/2019 2:26:00 PM 
+Job End Time : 4/9/2019 2:26:00 PM 
+Total Files moved : 0 
+Job Start Time : 4/9/2019 2:27:00 PM 
+Job End Time : 4/9/2019 2:27:00 PM 
+Total Files moved : 0 
+Job Start Time : 4/9/2019 2:28:00 PM 
+Job End Time : 4/9/2019 2:28:00 PM 
+Total Files moved : 0 
+Job Start Time : 4/10/2019 9:46:21 AM 
+Job End Time : 4/10/2019 9:46:21 AM 
+Total Files moved : 0 
+Job Start Time : 4/10/2019 9:47:43 AM 
+Job End Time : 4/10/2019 9:47:43 AM 
+Total Files moved : 0 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="860119f0-6c39-43ca-b37c-5e3a473ef7b4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://10.112.179.196:8080/PerceiverAPI" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PerceiverAPI.disco" MetadataType="Disco" ID="a2e8780f-707b-462b-9ee5-db87d5f56772" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?disco" />
+    <MetadataFile FileName="PerceiverAPI.xsd" MetadataType="Schema" ID="c4f69ae3-a487-43c9-8de2-7aec67627490" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd1" />
+    <MetadataFile FileName="PerceiverAPI1.xsd" MetadataType="Schema" ID="90c9917d-250f-4d44-8499-04940abe1ecc" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd4" />
+    <MetadataFile FileName="PerceiverAPI2.xsd" MetadataType="Schema" ID="8367cbe1-7ea4-4c6a-a367-586301b5a885" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd3" />
+    <MetadataFile FileName="PerceiverAPIs.wsdl" MetadataType="Wsdl" ID="b0314c12-63da-4e42-9f86-77b883912bf7" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?wsdl" />
+    <MetadataFile FileName="PerceiverAPI3.xsd" MetadataType="Schema" ID="a6dd04c0-14fe-4a45-95de-4b44eee5f05f" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd0" />
+    <MetadataFile FileName="PerceiverAPI4.xsd" MetadataType="Schema" ID="8cc3519f-ec2a-4bc3-b1d3-da4629cf96b8" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

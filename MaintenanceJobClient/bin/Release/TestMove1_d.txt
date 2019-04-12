@@ -1,0 +1,10 @@
+Source file = c:\swee\Release\Copy of BNM_Postcode.xlsx, TargetFile = c:\dest2\Release\Copy of BNM_Postcode.xlsx
+Source file = c:\swee\Release\Copy of JIRA.xlsx, TargetFile = c:\dest2\Release\Copy of JIRA.xlsx
+Source file = c:\swee\Release\cres sg active jobs.xlsx, TargetFile = c:\dest2\Release\cres sg active jobs.xlsx
+Source file = c:\swee\Release\desktop build.xlsx, TargetFile = c:\dest2\Release\desktop build.xlsx
+Source file = c:\swee\Release\JIRA.xlsx, TargetFile = c:\dest2\Release\JIRA.xlsx
+Source file = c:\swee\Release\PT as of Sep 6 2018.xlsx, TargetFile = c:\dest2\Release\PT as of Sep 6 2018.xlsx
+Source file = c:\swee\Release\SG Matrix 20181108.xlsx, TargetFile = c:\dest2\Release\SG Matrix 20181108.xlsx
+Source file = c:\swee\Release\SG Matrix 20181221.xlsx, TargetFile = c:\dest2\Release\SG Matrix 20181221.xlsx
+Source file = c:\swee\20180924 - Swee.jpg, TargetFile = c:\dest2\20180924 - Swee.jpg
+Source file = c:\swee\IMG_20190108_101417.jpg, TargetFile = c:\dest2\IMG_20190108_101417.jpg

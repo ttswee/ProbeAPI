@@ -5,8 +5,8 @@ using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.IO;
-
-namespace ProbeGateway
+using FileMaintenance;
+namespace GlobalAPI
 {
     public class DriveSpaces
     {
@@ -30,7 +30,16 @@ namespace ProbeGateway
         List<FileInfo> GetFolderInfo();
     }
 
-    public class ProbeSensor : ISpaceProbe, IFolderMaintenance
+    [ServiceContract]
+    public interface IJobMaintenance
+    {
+        [OperationContract]
+        List<MaintSch> GetJobList();
+
+
+    }
+
+    public class ProbeSensor : ISpaceProbe, IFolderMaintenance, IJobMaintenance
     {
         public List<DriveSpaces> GetDriveInfo()
         {
@@ -54,13 +63,23 @@ namespace ProbeGateway
 
         }
 
+        public List<MaintSch> GetJobList()
+        {
+            var MJobs = new MSch();
+            MJobs._AppPath = Directory.GetCurrentDirectory();
+            Console.WriteLine(MJobs._AppPath);
+            var _JobList = MJobs.GetAllJobs();
+            Console.WriteLine(_JobList[0].JobName);
+            return _JobList;
+        }
+
         public List<FileInfo> GetFolderInfo()
         {
-            foreach(DriveInfo dInfo in DriveInfo.GetDrives())
+            foreach (DriveInfo dInfo in DriveInfo.GetDrives())
             {
                 if (dInfo.IsReady)
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo( dInfo.RootDirectory.ToString());
+                    DirectoryInfo dirInfo = new DirectoryInfo(dInfo.RootDirectory.ToString());
                     foreach (DirectoryInfo subDirInfo in dirInfo.EnumerateDirectories())
                     {
                         //subDirInfo.FullName
@@ -69,11 +88,11 @@ namespace ProbeGateway
 
                 }
             }
-          
-            
             return new List<FileInfo>();
-
         }
+
+
+
     }
 
 

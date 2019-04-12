@@ -13,12 +13,9 @@ namespace SelfHost
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://127.0.0.1:8080/ProbeAPI");
-            //var APIs = new ProbeGateway.APIs();
-            // Create the ServiceHost.
-            using (ServiceHost host = new ServiceHost(typeof(ProbeGateway.ProbeSensor), baseAddress))
+            Uri baseAddress = new Uri("http://10.112.179.196:8080/ProbeAPI");
+            using (ServiceHost host = new ServiceHost(typeof(GlobalAPI.ProbeSensor), baseAddress))
             {
-                // Enable metadata publishing.
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
@@ -34,7 +31,6 @@ namespace SelfHost
                 }
                 else
                 {
-                    // make sure setting is turned ON
                     if (!debug.IncludeExceptionDetailInFaults)
                     {
                         debug.IncludeExceptionDetailInFaults = true;
@@ -43,14 +39,12 @@ namespace SelfHost
 
                 host.Open();
 
-                //Start file maintenance job
                 Thread fileMainJob = new Thread(new ThreadStart(FMThread));
                 fileMainJob.Start();
                 Console.WriteLine("The service is ready at {0}", baseAddress);
                 Console.WriteLine("Press <Enter> to stop the service.");
                 Console.ReadLine();
                 fileMainJob.Abort();
-                // Close the ServiceHost.
                 host.Close();
             }
         }
@@ -58,20 +52,21 @@ namespace SelfHost
 
         private static void FMThread()
         {
-            while (1!=0)
+            while (1 != 0)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(60000);
                 MSch _MaintenanceJobs = new MSch();
                 _MaintenanceJobs._AppPath = Directory.GetCurrentDirectory();
-                List<MaintSch> _listOfJobs =   _MaintenanceJobs.GetAllJobs();
+                List<MaintSch> _listOfJobs = _MaintenanceJobs.GetAllJobs();
                 MaintenanceJobs _JobExcuter = new MaintenanceJobs();
+                _JobExcuter._LogPath = Directory.GetCurrentDirectory();
                 bool jStatus = false;
-                foreach(MaintSch _Job in _listOfJobs)
+                foreach (MaintSch _Job in _listOfJobs)
                 {
-                    _JobExcuter._jobToExectute = _Job;
+                    _JobExcuter._jobToExecute = _Job;
                     jStatus = _JobExcuter.RunJob();
                 }
-                _MaintenanceJobs=null;
+                _MaintenanceJobs = null;
             }
         }
 

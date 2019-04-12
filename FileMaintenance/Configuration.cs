@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-
+using System.ServiceModel;
+using System.Runtime.Serialization;
 namespace FileMaintenance
 {
     public enum JobInterval
@@ -24,19 +25,33 @@ namespace FileMaintenance
     public  enum  JobType { Delete = 0, Move = 1, Compress = 2 }
 
     [XmlType("MaintenanceSchedule")]
-    [Serializable]
+    [Serializable,DataContract]
     public class MaintSch
     {
+        [DataMember]
         public string JobName { get; set; }
+        [DataMember]
         public JobType JobType { get; set; }
+        [DataMember]
         public string FolderName { get; set; }
+        [DataMember]
         public string TargetFolderName { get; set; }
+        [DataMember]
         public SpecialDay SpecialDay { get; set; } // the job only run on specific day of the month
+        [DataMember]
         public bool IncludeSubFolder { get; set; }
+        [DataMember]
         public bool IsJobActive { get; set; }
+        [DataMember]
         public int IntervalToKeep { get; set; } //How many days/month/year to be purge/move
+        [DataMember]
         public KeepIntervalType KeepIntervalsType { get; set; }
+        [DataMember]
         public int SpecificDay { get; set; }
+        [DataMember]
+        public string FileExt { get; set; }
+        [DataMember]
+        public bool DebugMode { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -45,7 +60,10 @@ namespace FileMaintenance
                 return false;
             if (TargetFolderName != NewJob.TargetFolderName || SpecificDay != NewJob.SpecificDay || SpecificDay != NewJob.SpecificDay)
                 return false;
+            if (KeepIntervalsType != NewJob.KeepIntervalsType || IntervalToKeep != NewJob.IntervalToKeep)
+                return false;
             return true;
+            
         }
 
 
@@ -63,13 +81,11 @@ namespace FileMaintenance
             if (File.Exists(Path.Combine(_AppPath,_JobConfigurateFileName)))
             {
                 MSchedule = GetAllJobs();
-                var existingfolder = MSchedule.Exists(x => x.Equals(newJob));
                 try
                 {
+                    var existingfolder = MSchedule.Exists(x => x.Equals(newJob));
                     if (existingfolder)
-                    {
-                        throw new Exception("Folder setting Exist");
-                    }
+                        throw new Exception("Same job already exist");
                     MSchedule.Add(newJob);
                 }
                 catch
@@ -83,16 +99,18 @@ namespace FileMaintenance
                 MSchedule.Add(newJob);
             }
 
-            var path = Path.Combine(_AppPath,_JobConfigurateFileName);//Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
+            var path = Path.Combine(_AppPath,_JobConfigurateFileName);
             System.Xml.Serialization.XmlSerializer writer =
                      new System.Xml.Serialization.XmlSerializer(MSchedule.GetType());
             System.IO.FileStream file = System.IO.File.Create(path);
             writer.Serialize(file, MSchedule);
+            file.Close();
             return true;
         }
 
         public List<MaintSch> GetAllJobs()
         {
+            Console.WriteLine(Path.Combine(_AppPath, _JobConfigurateFileName));
             if (File.Exists(Path.Combine(_AppPath, _JobConfigurateFileName)))
             {
                 using (Stream reader = new FileStream(Path.Combine(_AppPath, _JobConfigurateFileName), FileMode.Open))
@@ -100,8 +118,10 @@ namespace FileMaintenance
                     XmlSerializer DesSchedule = new XmlSerializer(typeof(List<MaintSch>));
                     MSchedule = (List<MaintSch>)DesSchedule.Deserialize(reader);
                 }
+                Console.WriteLine(MSchedule[0].JobName);
                 return MSchedule;
             }
+            Console.WriteLine("Not able to read config");
             return new List<MaintSch>();
         }
 
@@ -112,7 +132,7 @@ namespace FileMaintenance
             bool JobResult = false;
             foreach (MaintSch _Job in _JobList)
             {
-                _JobExecuter._jobToExectute = _Job;
+                _JobExecuter._jobToExecute = _Job;
                 JobResult = _JobExecuter.RunJob();
             }
             return false;

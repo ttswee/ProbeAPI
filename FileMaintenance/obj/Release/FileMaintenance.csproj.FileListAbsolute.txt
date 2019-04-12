@@ -1,6 +1,6 @@
 C:\Visual Studio 2012\Projects\ProbeGateway\FileMaintenance\obj\Release\FileMaintenance.csprojResolveAssemblyReference.cache
-C:\ProbeAPI\FileMaintenance\bin\Release\FileMaintenance.dll
-C:\ProbeAPI\FileMaintenance\bin\Release\FileMaintenance.pdb
-C:\ProbeAPI\FileMaintenance\obj\Release\FileMaintenance.dll
-C:\ProbeAPI\FileMaintenance\obj\Release\FileMaintenance.pdb
-C:\ProbeAPI\FileMaintenance\obj\Release\FileMaintenance.csprojResolveAssemblyReference.cache
+C:\probeapi\FileMaintenance\bin\Release\FileMaintenance.dll
+C:\probeapi\FileMaintenance\bin\Release\FileMaintenance.pdb
+C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.dll
+C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.pdb
+C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.csprojResolveAssemblyReference.cache

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ArrayOfMaintenanceSchedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MaintenanceSchedule>
+    <JobName>TestMove1</JobName>
+    <JobType>Move</JobType>
+    <FolderName>c:\swee\</FolderName>
+    <TargetFolderName>c:\swee\release</TargetFolderName>
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>true</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>2</IntervalToKeep>
+    <KeepIntervalsType>Month</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml;*.txt</FileExt>
+    <DebugMode>true</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>TestMove2</JobName>
+    <JobType>Move</JobType>
+    <FolderName>c:\swee\</FolderName>
+    <TargetFolderName>c:\swee\release</TargetFolderName>
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>true</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>15</IntervalToKeep>
+    <KeepIntervalsType>Days</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml;*.txt</FileExt>
+    <DebugMode>true</DebugMode>
+  </MaintenanceSchedule>
+</ArrayOfMaintenanceSchedule>

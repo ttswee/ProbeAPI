@@ -1,0 +1,19 @@
+Source file = c:\swee\Release\CRQ000000729253.docx, TargetFile = c:\dest\Release\CRQ000000729253.docx
+Source file = c:\swee\Release\CRQ000000738602.docx, TargetFile = c:\dest\Release\CRQ000000738602.docx
+Source file = c:\swee\Release\healthcheck.docx, TargetFile = c:\dest\Release\healthcheck.docx
+Source file = c:\swee\Release\MYMSC Integrated DR 2018 H2 - UVT Signoff.docx, TargetFile = c:\dest\Release\MYMSC Integrated DR 2018 H2 - UVT Signoff.docx
+Source file = c:\swee\Release\Post PFi PDS (Shariah Comment) (3) (IMH).docx, TargetFile = c:\dest\Release\Post PFi PDS (Shariah Comment) (3) (IMH).docx
+Source file = c:\swee\1467766.pdf, TargetFile = c:\dest\1467766.pdf
+Source file = c:\swee\24SepMC.pdf, TargetFile = c:\dest\24SepMC.pdf
+Source file = c:\swee\anti competation.pdf, TargetFile = c:\dest\anti competation.pdf
+Source file = c:\swee\bribery and anti corruption.pdf, TargetFile = c:\dest\bribery and anti corruption.pdf
+Source file = c:\swee\code of conduct.pdf, TargetFile = c:\dest\code of conduct.pdf
+Source file = c:\swee\conflict of interest.pdf, TargetFile = c:\dest\conflict of interest.pdf
+Source file = c:\swee\fraud.pdf, TargetFile = c:\dest\fraud.pdf
+Source file = c:\swee\group policy awareness.pdf, TargetFile = c:\dest\group policy awareness.pdf
+Source file = c:\swee\H and S.pdf, TargetFile = c:\dest\H and S.pdf
+Source file = c:\swee\money laundering.pdf, TargetFile = c:\dest\money laundering.pdf
+Source file = c:\swee\risk cert.pdf, TargetFile = c:\dest\risk cert.pdf
+Source file = c:\swee\Risk Management.pdf, TargetFile = c:\dest\Risk Management.pdf
+Source file = c:\swee\sanction.pdf, TargetFile = c:\dest\sanction.pdf
+Source file = c:\swee\security.pdf, TargetFile = c:\dest\security.pdf

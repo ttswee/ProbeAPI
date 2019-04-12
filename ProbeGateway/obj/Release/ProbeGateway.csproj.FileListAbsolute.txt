@@ -1,8 +1,8 @@
-C:\ProbeAPI\ProbeGateway\bin\Release\ProbeGateway.exe.config
-C:\ProbeAPI\ProbeGateway\obj\Release\ProbeGateway.csprojResolveAssemblyReference.cache
-C:\ProbeAPI\ProbeGateway\bin\Release\ProbeGateway.exe
-C:\ProbeAPI\ProbeGateway\bin\Release\ProbeGateway.pdb
-C:\ProbeAPI\ProbeGateway\obj\Release\ProbeGateway.exe
-C:\ProbeAPI\ProbeGateway\obj\Release\ProbeGateway.pdb
-C:\ProbeAPI\ProbeGateway\bin\Release\FileMaintenance.dll
-C:\ProbeAPI\ProbeGateway\bin\Release\FileMaintenance.pdb
+C:\probeapi\ProbeGateway\bin\Release\ProbeGateway.exe.config
+C:\probeapi\ProbeGateway\bin\Release\ProbeGateway.exe
+C:\probeapi\ProbeGateway\bin\Release\ProbeGateway.pdb
+C:\probeapi\ProbeGateway\bin\Release\FileMaintenance.dll
+C:\probeapi\ProbeGateway\bin\Release\FileMaintenance.pdb
+C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.csprojResolveAssemblyReference.cache
+C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.exe
+C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.pdb

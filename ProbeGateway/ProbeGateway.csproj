@@ -7,11 +7,11 @@
     <ProjectGuid>{A08C251B-11FC-4E7A-89BA-50756A84C470}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProbeGateway</RootNamespace>
+    <RootNamespace>PerceiverAPIService</RootNamespace>
     <AssemblyName>ProbeGateway</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

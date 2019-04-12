@@ -10,34 +10,53 @@ namespace FileMaintenance
 {
     public class MaintenanceJobs 
     {
-        public MaintSch _jobToExectute{get;set;}
+        public MaintSch _jobToExecute{get;set;}
         public string _LogPath { get; set; }
+        private List<FileInfo> _allFileList { get; set; }
+        private DateTime? _dateToCheck { get; set; }
+        public string DetailLogFileName { get; set; }
+        public string HeaderLogFileName { get; set; }
+        private List<string> LogDetails = new List<string>();
+        private List<string> LogHeader = new List<string>();
         public bool  GetJobConfig()
         {
             return false;
         }
+
+
+        public  MaintenanceJobs()
+        {
+
+        }
+        
+
         public bool RunJob()
         {
-            if (_jobToExectute.IsJobActive != true)
+            _allFileList = new List<FileInfo>();
+
+            DetailLogFileName = Path.Combine(_LogPath, _jobToExecute.JobName + "_d.txt");
+            HeaderLogFileName = Path.Combine(_LogPath, _jobToExecute.JobName + "_h.txt");       
+
+            if (_jobToExecute.IsJobActive != true)
                 return true;
 
-            if (_jobToExectute.SpecialDay==SpecialDay.LastDayOfMonth)
+            if (_jobToExecute.SpecialDay==SpecialDay.LastDayOfMonth)
                 if (DateTime.Now.Day != DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month))
                     return true;
-            
 
+            _dateToCheck = CheckRange();
 
-            if (_jobToExectute.JobType == JobType.Move)
+            if (_jobToExecute.JobType == JobType.Move)
             {
                 return MoveJobs();
             }
 
-            if (_jobToExectute.JobType == JobType.Delete)
+            if (_jobToExecute.JobType == JobType.Delete)
             {
                 return DeleteJobs();
             }
 
-            if (_jobToExectute.JobType == JobType.Compress)
+            if (_jobToExecute.JobType == JobType.Compress)
             {
                 return CompressJob();
             }
@@ -45,140 +64,184 @@ namespace FileMaintenance
             return false;
         }
 
-        public bool WriteLogs(string[] sLogText)
+        private bool WriteLogs(string LogFileName, string[] sLogText)
         {
-            string LogFileName=Path.Combine( _LogPath , _jobToExectute.JobName + ".txt");
+            
             FileStream file;
             if (!File.Exists(LogFileName))
             {
                 file = File.Create(LogFileName);
                 file.Close();
             }
-            File.WriteAllLines(LogFileName,sLogText);
+            File.AppendAllLines(LogFileName,sLogText);
             return true;
         }
 
 
-        public bool MoveJobs()
+
+
+        private bool MoveJobs()
         {
-            if (_jobToExectute.TargetFolderName=="")
-                throw new Exception ("Move Job has no destination folder specified");
-            //if (!Directory.Exists(_jobToExectute.TargetFolderName))
-            //    throw new Exception ("Move Job targer folder does not exist!");
-            if (!Directory.Exists(_jobToExectute.FolderName))
-                throw new Exception ("Move Job source folder does not exist!");
-            DirectoryInfo dirInfo = new DirectoryInfo(_jobToExectute.FolderName);
-
-            List<FileInfo> _fInfo = dirInfo.EnumerateFiles("*.*", SearchOption.AllDirectories).ToList();
-            DateTime _ToMove = DateTime.Now;
-            if (_jobToExectute.KeepIntervalsType==KeepIntervalType.Days)
+            LogHeader.Clear();
+            LogDetails.Clear();
+            try
             {
-                _ToMove=DateTime.Now.AddDays(_jobToExectute.IntervalToKeep * -1);
+                if (_jobToExecute.TargetFolderName == "")
+                    throw new Exception("No destination");
+                if (!Directory.Exists(_jobToExecute.FolderName))
+                    throw new Exception("Source Not Exist");
             }
-            if (_jobToExectute.KeepIntervalsType == KeepIntervalType.Month)
+            catch (Exception ex)
             {
-                _ToMove=DateTime.Now.AddMonths(_jobToExectute.IntervalToKeep * -1);
+                if (ex.Message == "No destination")
+                {
+                    WriteLogs(HeaderLogFileName,  new string[] {"Destination Folder no specified"});
+                }
+                if (ex.Message == "Source Not Exist")
+                {
+                    WriteLogs(HeaderLogFileName, new string[] { "Souce Folder does not exist" });  
+                }
+                return true;
             }
 
-            List<FileInfo> _FileToMove = _fInfo.Where(Fi => Fi.CreationTime <= _ToMove).ToList();
-            List<string> LogDetails = new List<string>();
-
+            
+            GetAllFilesList();
+            List<FileInfo> _filesToMove = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
             string _SourceFile = "";
             string _TargerFile = "";
-            foreach (FileInfo _toMove in _FileToMove)
+
+            LogHeader.Add(string.Format("Job Start Time : {0} " ,DateTime.Now.ToString()));
+            foreach (FileInfo _fileToMove in _filesToMove)
             {
-                _SourceFile = _toMove.FullName;
-                //_TargerFile = Path.Combine(_jobToExectute.TargetFolderName,_toMove.Name);
-                _TargerFile = _toMove.FullName.Replace(_jobToExectute.FolderName, _jobToExectute.TargetFolderName);
-                LogDetails.Add(string.Format("Source file = {0}, TargetFile = {1}", _SourceFile, _TargerFile));
-                if (!Directory.Exists(Path.GetDirectoryName(_TargerFile)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(_TargerFile));
-                File.Move(_SourceFile, _TargerFile);
+                _SourceFile = _fileToMove.FullName;
+                _TargerFile = _fileToMove.FullName.Replace(_jobToExecute.FolderName, _jobToExecute.TargetFolderName);
+                LogDetails.Add(string.Format("Source file = {0}, TargetFile = {1}, File Last Write Date : {2}", _SourceFile, _TargerFile,_fileToMove.LastWriteTime));
+                if (!_jobToExecute.DebugMode)
+                {
+                    if (!Directory.Exists(Path.GetDirectoryName(_TargerFile)))
+                        Directory.CreateDirectory(Path.GetDirectoryName(_TargerFile));
+                    try
+                    {
+                        File.Move(_SourceFile, _TargerFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogDetails.Add(string.Format("File {0} cannot be moved, Error :  {1}", _fileToMove.FullName, ex.Message));
+                    }
+                }
             }
-            WriteLogs(LogDetails.ToArray());
+            LogHeader.Add(string.Format("Job End Time : {0} ", DateTime.Now.ToString()));
+            LogHeader.Add(string.Format("Total Files moved : {0} ",_filesToMove.Count().ToString()));
+            
+            WriteLogs(DetailLogFileName,LogDetails.ToArray());
+            WriteLogs(HeaderLogFileName, LogHeader.ToArray());
             return false;
         }
 
-        public bool DeleteJobs()
+        private bool DeleteJobs()
         {
-            if (!Directory.Exists(_jobToExectute.FolderName))
+            LogHeader.Clear();
+            LogDetails.Clear();
+            if (!Directory.Exists(_jobToExecute.FolderName))
             {
                 throw new Exception("Folder does not exist!");
             }
-            DirectoryInfo dirInfo = new DirectoryInfo(_jobToExectute.FolderName);
 
-            List<FileInfo> _fInfo = dirInfo.EnumerateFiles("*.*", SearchOption.AllDirectories).ToList();
-            DateTime _toDelete = DateTime.Now;
-            if (_jobToExectute.KeepIntervalsType == KeepIntervalType.Days)
-            {
-                _toDelete = DateTime.Now.AddDays(_jobToExectute.IntervalToKeep * -1);
-            }
-            if (_jobToExectute.KeepIntervalsType == KeepIntervalType.Month)
-            {
-                _toDelete = DateTime.Now.AddMonths(_jobToExectute.IntervalToKeep * -1);
-            }
 
-            List<FileInfo> _DeleteList = _fInfo.Where(Fi => Fi.CreationTime <= _toDelete).ToList();
-            List<string> LogDetails = new List<string>();
-            string _SourceFile = "";
-            foreach (FileInfo _filemarkfordelete in _DeleteList)
+            GetAllFilesList();
+            List<FileInfo> _filesToDelete = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
+ 
+            string _targetFile = "";
+            foreach (FileInfo _fileToDelete in _filesToDelete)
             {
-                _SourceFile = _filemarkfordelete.FullName;
-                LogDetails.Add(string.Format("File to delete : {0}, Last Access Date {1}", _SourceFile, _filemarkfordelete.LastAccessTime));
+                _targetFile = _fileToDelete.FullName;
+                LogDetails.Add(string.Format("Target file = {0}", _targetFile));
+                if (!_jobToExecute.DebugMode)
+                {
+                    try
+                    {
+                        File.Delete(_targetFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        LogDetails.Add(string.Format("File {0} cannot be deleted, Error :  {1}", _fileToDelete.FullName, ex.Message));
+                    }
+                }
             }
-            WriteLogs(LogDetails.ToArray());
+            LogHeader.Add(string.Format("Job End Time : {0} ", DateTime.Now.ToString()));
+            LogHeader.Add(string.Format("Total Files moved : {0} ", _filesToDelete.Count().ToString()));
+            WriteLogs(DetailLogFileName, LogDetails.ToArray());
+            WriteLogs(HeaderLogFileName, LogHeader.ToArray());
             return false;
         }
 
 
-        public bool CompressJob()
+        private bool CompressJob()
         {
-            if (!Directory.Exists(_jobToExectute.FolderName))
+            if (!Directory.Exists(_jobToExecute.FolderName))
             {
                 throw new Exception("Folder does not exist!");
             }
-            DirectoryInfo dirInfo = new DirectoryInfo(_jobToExectute.FolderName);
 
-            List<FileInfo> _fInfo = dirInfo.EnumerateFiles("*.*", SearchOption.AllDirectories).ToList();
-            DateTime _toDelete = DateTime.Now;
-            if (_jobToExectute.KeepIntervalsType == KeepIntervalType.Days)
-            {
-                _toDelete = DateTime.Now.AddDays(_jobToExectute.IntervalToKeep * -1);
-            }
-            if (_jobToExectute.KeepIntervalsType == KeepIntervalType.Month)
-            {
-                _toDelete = DateTime.Now.AddMonths(_jobToExectute.IntervalToKeep * -1);
-            }
 
-            List<FileInfo> _DeleteList = _fInfo.Where(Fi => Fi.CreationTime <= _toDelete).ToList();
+            List<FileInfo> _DeleteList = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
 
-            string _SourceFile = "";
             foreach (FileInfo fileToCompress in _DeleteList)
             {
-            using (FileStream originalFileStream = fileToCompress.OpenRead())
-            {
-                if ((File.GetAttributes(fileToCompress.FullName) & 
-                   FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
+                using (FileStream originalFileStream = fileToCompress.OpenRead())
                 {
-                    using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
+                    if ((File.GetAttributes(fileToCompress.FullName) &
+                       FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
                     {
-                        using (GZipStream compressionStream = new GZipStream(compressedFileStream, 
-                           CompressionMode.Compress))
+                        using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
                         {
-                            originalFileStream.CopyTo(compressionStream);
-
+                            using (GZipStream compressionStream = new GZipStream(compressedFileStream,
+                               CompressionMode.Compress))
+                            {
+                                originalFileStream.CopyTo(compressionStream);
+                            }
                         }
+                        FileInfo info = new FileInfo(_LogPath + Path.DirectorySeparatorChar + fileToCompress.Name + ".gz");
                     }
-                    FileInfo info = new FileInfo(_LogPath + Path.DirectorySeparatorChar + fileToCompress.Name + ".gz");
-                    //Console.WriteLine($"Compressed {fileToCompress.Name} from {fileToCompress.Length.ToString()} to {info.Length.ToString()} bytes.");
-                }
 
-            }
-                //_SourceFile = _filemarkfordelete.FullName;
-                //WriteLogs(string.Format("File to delete : {0}, Last Access Date {1}", _SourceFile, _filemarkfordelete.LastAccessTime));
+                }
             }
 
             return false;
         }
+
+        private DateTime? CheckRange()
+        {
+            DateTime? dateOfInterest = null;
+            if (_jobToExecute.KeepIntervalsType == KeepIntervalType.Days)
+            {
+                dateOfInterest = DateTime.Now.AddDays(_jobToExecute.IntervalToKeep * -1);
+            }
+            if (_jobToExecute.KeepIntervalsType == KeepIntervalType.Month)
+            {
+                dateOfInterest= DateTime.Now.AddMonths(_jobToExecute.IntervalToKeep * -1);
+            }
+            return dateOfInterest; 
+        }
+
+        private void GetAllFilesList()
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(_jobToExecute.FolderName);
+            List<FileInfo> _byExt = new List<FileInfo>();
+            if (_jobToExecute.IncludeSubFolder)
+                foreach( var ext in _jobToExecute.FileExt.Split(';'))
+                {
+                    _byExt = dirInfo.EnumerateFiles(ext, SearchOption.AllDirectories).ToList();
+                    _allFileList = _allFileList.Concat(_byExt).ToList();
+                }
+            else
+                foreach (var ext in _jobToExecute.FileExt.Split(';'))
+                {
+                    _allFileList = _allFileList.Concat(dirInfo.EnumerateFiles(ext, SearchOption.TopDirectoryOnly)).ToList();
+                }
+        }
+
+        
+
     }
 }

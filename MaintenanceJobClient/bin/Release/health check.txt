@@ -1,0 +1,12 @@
+cres my mort :
+CRES MY Mort - PDW DAILY UPLOAD (OPEN SSH)
+CRES MY Mort - PDW DAILY (CHEESE) UPLOAD (OPEN SSH)
+Logs :
+Log Files - PDW Jobs
+
+ifrs : F:\APPLCRES
+
+CCPL
+ifrs same
+CRES2ODS Resend - F:\SCBCRES\TDE\ODS\CRES2ODS_Resend.bat
+DAILY PDW 03 Upload 01 RAP

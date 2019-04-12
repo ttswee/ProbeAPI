@@ -66,7 +66,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\probeAPI\Reference.cs">
+    <Compile Include="Service References\PerceiverAPIs\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -74,8 +74,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\FileMaintenance.MaintSch.datasource" />
     <None Include="Properties\DataSources\ProbeGateway.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\SelfHost.DriveSpaces.datasource" />
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPIs.wsdl" />
+    <None Include="Service References\PerceiverAPIs\SensorTester.PerceiverAPIs.DriveSpaces.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PerceiverAPIs\SensorTester.PerceiverAPIs.MaintSch.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProbeGateway\ProbeGateway.csproj">
@@ -90,35 +113,22 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\probeAPI\" />
+    <WCFMetadataStorage Include="Service References\PerceiverAPIs\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\probeAPI\configuration91.svcinfo" />
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\probeAPI\configuration.svcinfo" />
+    <None Include="Service References\PerceiverAPIs\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\probeAPI\ProbeAPI3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeAPI31.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeAPI32.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeAPI33.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\probeAPI\ProbeSensor1.wsdl" />
-    <None Include="Service References\probeAPI\Reference.svcmap">
+    <None Include="Service References\PerceiverAPIs\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PerceiverAPIs\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\probeAPI\ProbeAPI1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

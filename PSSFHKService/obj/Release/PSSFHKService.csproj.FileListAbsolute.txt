@@ -1,0 +1,11 @@
+C:\probeapi\PSSFHKService\bin\Release\PSSFHKService.exe.config
+C:\probeapi\PSSFHKService\bin\Release\PSSFHKService.exe
+C:\probeapi\PSSFHKService\bin\Release\PSSFHKService.pdb
+C:\probeapi\PSSFHKService\bin\Release\FileMaintenance.dll
+C:\probeapi\PSSFHKService\bin\Release\FileMaintenance.pdb
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.csprojResolveAssemblyReference.cache
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.FileHouseKeep.resources
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.ProjectInstaller.resources
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.csproj.GenerateResource.Cache
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.exe
+C:\probeapi\PSSFHKService\obj\Release\PSSFHKService.pdb

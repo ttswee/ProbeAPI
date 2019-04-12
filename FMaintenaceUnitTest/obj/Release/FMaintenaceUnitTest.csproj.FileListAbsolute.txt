@@ -1,7 +1,7 @@
-C:\ProbeAPI\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.dll
-C:\ProbeAPI\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.pdb
-C:\ProbeAPI\FMaintenaceUnitTest\bin\Release\FileMaintenance.dll
-C:\ProbeAPI\FMaintenaceUnitTest\bin\Release\FileMaintenance.pdb
-C:\ProbeAPI\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.csprojResolveAssemblyReference.cache
-C:\ProbeAPI\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.dll
-C:\ProbeAPI\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.pdb
+C:\probeapi\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.dll
+C:\probeapi\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.pdb
+C:\probeapi\FMaintenaceUnitTest\bin\Release\FileMaintenance.dll
+C:\probeapi\FMaintenaceUnitTest\bin\Release\FileMaintenance.pdb
+C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.csprojResolveAssemblyReference.cache
+C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.dll
+C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.pdb

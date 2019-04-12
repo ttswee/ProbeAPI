@@ -10,7 +10,7 @@ namespace SensorTester
     {
         static void Main(string[] args)
         {
-            var ps = new probeAPI.SpaceProbeClient();
+            var ps = new PerceiverAPIs.SpaceProbeClient();
             var dSpace = ps.GetDriveInfo();
             for (int i = 0; i< dSpace.Count() ; i++)
             {
@@ -18,6 +18,16 @@ namespace SensorTester
 
             }
             Console.WriteLine(dSpace);
+
+            var MaintJobsAPI = new PerceiverAPIs.JobMaintenanceClient();
+            var JobList = MaintJobsAPI.GetJobList();
+            Console.WriteLine(JobList.GetType());
+            foreach (PerceiverAPIs.MaintSch J in JobList)
+            {
+                Console.WriteLine("Job Name : {0}", J.JobName);
+                Console.WriteLine("Job Type : {0}", J.JobType);
+                Console.WriteLine("Job Folder Name : {0}", J.FolderName);
+            }
             Console.ReadKey();
 
 
