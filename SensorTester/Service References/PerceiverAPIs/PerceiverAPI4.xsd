@@ -8,6 +8,7 @@
   <xs:element name="ArrayOfDriveSpaces" nillable="true" type="tns:ArrayOfDriveSpaces" />
   <xs:complexType name="DriveSpaces">
     <xs:sequence>
+      <xs:element minOccurs="0" name="TotalSpace" type="xs:long" />
       <xs:element minOccurs="0" name="driveLetter" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="freeSpace" type="xs:long" />
     </xs:sequence>

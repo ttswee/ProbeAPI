@@ -21,6 +21,12 @@
   <wsdl:message name="IFolderMaintenance_GetFolderInfo_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetFolderInfoResponse" />
   </wsdl:message>
+  <wsdl:message name="IFolderMaintenance_GetFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="IFolderMaintenance_GetFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
   <wsdl:message name="IJobMaintenance_GetJobList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetJobList" />
   </wsdl:message>
@@ -37,6 +43,10 @@
     <wsdl:operation name="GetFolderInfo">
       <wsdl:input wsam:Action="http://tempuri.org/IFolderMaintenance/GetFolderInfo" message="tns:IFolderMaintenance_GetFolderInfo_InputMessage" />
       <wsdl:output wsam:Action="http://tempuri.org/IFolderMaintenance/GetFolderInfoResponse" message="tns:IFolderMaintenance_GetFolderInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsam:Action="http://tempuri.org/IFolderMaintenance/GetFile" message="tns:IFolderMaintenance_GetFile_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IFolderMaintenance/GetFileResponse" message="tns:IFolderMaintenance_GetFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IJobMaintenance">
@@ -61,6 +71,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetFolderInfo">
       <soap:operation soapAction="http://tempuri.org/IFolderMaintenance/GetFolderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/IFolderMaintenance/GetFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -23,6 +23,9 @@ namespace SensorTester.PerceiverAPIs {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long TotalSpaceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string driveLetterField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -35,6 +38,19 @@ namespace SensorTester.PerceiverAPIs {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long TotalSpace {
+            get {
+                return this.TotalSpaceField;
+            }
+            set {
+                if ((this.TotalSpaceField.Equals(value) != true)) {
+                    this.TotalSpaceField = value;
+                    this.RaisePropertyChanged("TotalSpace");
+                }
             }
         }
         
@@ -380,6 +396,9 @@ namespace SensorTester.PerceiverAPIs {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFolderMaintenance/GetFolderInfo", ReplyAction="http://tempuri.org/IFolderMaintenance/GetFolderInfoResponse")]
         System.IO.FileInfo[] GetFolderInfo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFolderMaintenance/GetFile", ReplyAction="http://tempuri.org/IFolderMaintenance/GetFileResponse")]
+        byte[] GetFile(string FileName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -411,6 +430,10 @@ namespace SensorTester.PerceiverAPIs {
         
         public System.IO.FileInfo[] GetFolderInfo() {
             return base.Channel.GetFolderInfo();
+        }
+        
+        public byte[] GetFile(string FileName) {
+            return base.Channel.GetFile(FileName);
         }
     }
     

@@ -25,20 +25,27 @@ namespace PerceiverAPI
         private static string _AppPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private static string _LogPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private static int RunInterval = Convert.ToInt32(ConfigurationManager.AppSettings["SleepInterval"]);
-
+        private static int EnableRestful = Convert.ToInt32(ConfigurationManager.AppSettings["EnableRestful"]);
+        private static string hostURI = ConfigurationManager.AppSettings["APIUri"];
+        private ServiceHost host = null;
         protected override void OnStart(string[] args)
         {
-            
+            //using (EventLog eLog = new EventLog("Application"))
+            //{
+            //    EventLog.Source = "PerceiverService";
+            //    EventLog.WriteEntry(string.Format("Configuration : {0}",hostURI), EventLogEntryType.Information);
+            //}
             bRun = true;
             List<string> logMsg = new List<string>();
 
             Thread fileMainJob = new Thread(new ThreadStart(FMThread));
             fileMainJob.Start();
             //Start RESTFul listening
-
-            Uri baseAddress = new Uri("http://10.112.179.196:8080/PerceiverAPI");
-            using (ServiceHost host = new ServiceHost(typeof(GlobalAPI.PerceiverAPIs), baseAddress))
+            if (EnableRestful == 1)
             {
+                //Uri baseAddress = new Uri("http://10.112.179.196:8080/PerceiverAPI");
+                Uri baseAddress = new Uri(hostURI);
+                host = new ServiceHost(typeof(GlobalAPI.PerceiverAPIs), baseAddress);
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
@@ -64,7 +71,7 @@ namespace PerceiverAPI
                 using (EventLog eLog = new EventLog("Application"))
                 {
                     EventLog.Source = "PerceiverService";
-                    EventLog.WriteEntry("API Listening", EventLogEntryType.Information);
+                    EventLog.WriteEntry(string.Format("API Listener state {0}", host.State), EventLogEntryType.Information);
                 }
             }
         }
@@ -72,7 +79,8 @@ namespace PerceiverAPI
         protected override void OnStop()
         {
             bRun = false;
-            
+            if (EnableRestful == 1)
+                host.Close();
         }
 
         private void FMThread()

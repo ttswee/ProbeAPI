@@ -43,6 +43,10 @@ namespace FileMaintenance
             if (_jobToExecute.SpecialDay==SpecialDay.LastDayOfMonth)
                 if (DateTime.Now.Day != DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month))
                     return true;
+            //Job on specific day of month
+            if (DateTime.Now.Day != _jobToExecute.SpecificDay)
+                return true;
+
 
             _dateToCheck = CheckRange();
 
@@ -106,16 +110,17 @@ namespace FileMaintenance
 
             
             GetAllFilesList();
+            logJobSettings();
             List<FileInfo> _filesToMove = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
             string _SourceFile = "";
             string _TargerFile = "";
 
-            LogHeader.Add(string.Format("Job Start Time : {0} " ,DateTime.Now.ToString()));
+            
             foreach (FileInfo _fileToMove in _filesToMove)
             {
                 _SourceFile = _fileToMove.FullName;
                 _TargerFile = _fileToMove.FullName.Replace(_jobToExecute.FolderName, _jobToExecute.TargetFolderName);
-                LogDetails.Add(string.Format("Source file = {0}, TargetFile = {1}, File Last Write Date : {2}", _SourceFile, _TargerFile,_fileToMove.LastWriteTime));
+                //LogDetails.Add(string.Format("Source file = {0}, TargetFile = {1}, File Last Write Date : {2}", _SourceFile, _TargerFile,_fileToMove.LastWriteTime));
                 if (!_jobToExecute.DebugMode)
                 {
                     if (!Directory.Exists(Path.GetDirectoryName(_TargerFile)))
@@ -142,20 +147,32 @@ namespace FileMaintenance
         {
             LogHeader.Clear();
             LogDetails.Clear();
-            if (!Directory.Exists(_jobToExecute.FolderName))
+            try
             {
-                throw new Exception("Folder does not exist!");
+                if (!Directory.Exists(_jobToExecute.FolderName))
+                {
+                    throw new Exception(string.Format("Folder does not exit"));
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "Folder does not exist")
+                {
+                    WriteLogs(HeaderLogFileName, new string[] { string.Format("Folder does not exisit : {0}",_jobToExecute.FolderName)});
+                }
+                return true;
             }
 
+            
 
             GetAllFilesList();
             List<FileInfo> _filesToDelete = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
- 
+            LogHeader.Add(string.Format("File before {0} will be deleted ", _dateToCheck));
+            logJobSettings();
             string _targetFile = "";
             foreach (FileInfo _fileToDelete in _filesToDelete)
             {
                 _targetFile = _fileToDelete.FullName;
-                LogDetails.Add(string.Format("Target file = {0}", _targetFile));
                 if (!_jobToExecute.DebugMode)
                 {
                     try
@@ -168,8 +185,9 @@ namespace FileMaintenance
                     }
                 }
             }
+
             LogHeader.Add(string.Format("Job End Time : {0} ", DateTime.Now.ToString()));
-            LogHeader.Add(string.Format("Total Files moved : {0} ", _filesToDelete.Count().ToString()));
+            LogHeader.Add(string.Format("Total Files deleted : {0} ", _filesToDelete.Count().ToString()));
             WriteLogs(DetailLogFileName, LogDetails.ToArray());
             WriteLogs(HeaderLogFileName, LogHeader.ToArray());
             return false;
@@ -178,12 +196,15 @@ namespace FileMaintenance
 
         private bool CompressJob()
         {
+            LogHeader.Clear();
+            LogDetails.Clear();
             if (!Directory.Exists(_jobToExecute.FolderName))
             {
                 throw new Exception("Folder does not exist!");
             }
 
-
+            GetAllFilesList();
+            logJobSettings();
             List<FileInfo> _DeleteList = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
 
             foreach (FileInfo fileToCompress in _DeleteList)
@@ -215,11 +236,11 @@ namespace FileMaintenance
             DateTime? dateOfInterest = null;
             if (_jobToExecute.KeepIntervalsType == KeepIntervalType.Days)
             {
-                dateOfInterest = DateTime.Now.AddDays(_jobToExecute.IntervalToKeep * -1);
+                dateOfInterest = DateTime.Today.AddDays(_jobToExecute.IntervalToKeep * -1);
             }
             if (_jobToExecute.KeepIntervalsType == KeepIntervalType.Month)
             {
-                dateOfInterest= DateTime.Now.AddMonths(_jobToExecute.IntervalToKeep * -1);
+                dateOfInterest= DateTime.Today.AddMonths(_jobToExecute.IntervalToKeep * -1);
             }
             return dateOfInterest; 
         }
@@ -241,7 +262,16 @@ namespace FileMaintenance
                 }
         }
 
-        
+        private void logJobSettings()
+        {
+            LogHeader.Add(string.Format(new string('-',30), DateTime.Now.ToString()));
+            LogHeader.Add(string.Format("Job start Time : {0} ", DateTime.Now.ToString()));
+            var props = _jobToExecute.GetType().GetProperties();
+            foreach (var prop in props)
+            {
+                LogHeader.Add(string.Format("Setting - {0} = {1}", prop.Name, prop.GetValue(_jobToExecute, null)));
+            }
+        }
 
     }
 }

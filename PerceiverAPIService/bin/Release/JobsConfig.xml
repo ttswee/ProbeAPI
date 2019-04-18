@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<ArrayOfMaintenanceSchedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MaintenanceSchedule>
+    <JobName>DELETECCMSMORTDONE</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>F:\SCBCRES\CCMS_MORT\DONE\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>60</IntervalToKeep>
+    <KeepIntervalsType>Days</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>DELETEEBBSDONE</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>F:\SCBCRES\EBBS_MORT\DONE\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>60</IntervalToKeep>
+    <KeepIntervalsType>Days</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>DELETERLSDONE</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>F:\SCBCRES\RLS_MORT\DONE\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>60</IntervalToKeep>
+    <KeepIntervalsType>Days</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>MSSQLBACKUP</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>E:\MSSQL\Backup\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>60</IntervalToKeep>
+    <KeepIntervalsType>Days</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.xml</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>FRAUD</JobName>
+    <JobType>Move</JobType>
+    <FolderName>E:\Malaysia\Fraud </FolderName>
+    <TargetFolderName>E:\Archive (Mark for Deletion)\E\Fraud\</TargetFolderName>
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>1</IntervalToKeep>
+    <KeepIntervalsType>Year</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.*</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>EDRIVETEMP</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>E:\temp\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>1</IntervalToKeep>
+    <KeepIntervalsType>Year</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.zip</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+  <MaintenanceSchedule>
+    <JobName>MALAYSIACDM</JobName>
+    <JobType>Delete</JobType>
+    <FolderName>E:\Malaysia\cdm\</FolderName>
+    <TargetFolderName />
+    <SpecialDay>NotInUse</SpecialDay>
+    <IncludeSubFolder>false</IncludeSubFolder>
+    <IsJobActive>true</IsJobActive>
+    <IntervalToKeep>1</IntervalToKeep>
+    <KeepIntervalsType>Year</KeepIntervalsType>
+    <SpecificDay>0</SpecificDay>
+    <FileExt>*.*</FileExt>
+    <DebugMode>false</DebugMode>
+  </MaintenanceSchedule>
+</ArrayOfMaintenanceSchedule>

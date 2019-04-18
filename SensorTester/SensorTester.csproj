@@ -75,6 +75,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Properties\DataSources\FileMaintenance.MaintSch.datasource" />
+    <None Include="Properties\DataSources\GlobalAPI.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\ProbeGateway.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\SelfHost.DriveSpaces.datasource" />
     <None Include="Service References\PerceiverAPIs\PerceiverAPI.xsd">
@@ -99,12 +100,6 @@
     <None Include="Service References\PerceiverAPIs\SensorTester.PerceiverAPIs.MaintSch.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ProbeGateway\ProbeGateway.csproj">
-      <Project>{a08c251b-11fc-4e7a-89ba-50756a84c470}</Project>
-      <Name>ProbeGateway</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
