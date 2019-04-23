@@ -87,9 +87,7 @@ namespace GlobalAPI
         {
             var MJobs = new MSch();
             MJobs._AppPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Console.WriteLine(MJobs._AppPath);
             var _JobList = MJobs.GetAllJobs();
-            Console.WriteLine(_JobList[0].JobName);
             return _JobList;
         }
 

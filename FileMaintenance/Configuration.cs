@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using System.Diagnostics;
 namespace FileMaintenance
 {
     public enum JobInterval
@@ -110,7 +111,6 @@ namespace FileMaintenance
 
         public List<MaintSch> GetAllJobs()
         {
-            Console.WriteLine(Path.Combine(_AppPath, _JobConfigurateFileName));
             if (File.Exists(Path.Combine(_AppPath, _JobConfigurateFileName)))
             {
                 using (Stream reader = new FileStream(Path.Combine(_AppPath, _JobConfigurateFileName), FileMode.Open))
@@ -118,10 +118,8 @@ namespace FileMaintenance
                     XmlSerializer DesSchedule = new XmlSerializer(typeof(List<MaintSch>));
                     MSchedule = (List<MaintSch>)DesSchedule.Deserialize(reader);
                 }
-                Console.WriteLine(MSchedule[0].JobName);
                 return MSchedule;
             }
-            Console.WriteLine("Not able to read config");
             return new List<MaintSch>();
         }
 

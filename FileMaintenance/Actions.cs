@@ -44,8 +44,9 @@ namespace FileMaintenance
                 if (DateTime.Now.Day != DateTime.DaysInMonth(DateTime.Now.Year,DateTime.Now.Month))
                     return true;
             //Job on specific day of month
-            if (DateTime.Now.Day != _jobToExecute.SpecificDay)
-                return true;
+            if (_jobToExecute.SpecificDay != 0)
+                if (DateTime.Now.Day != _jobToExecute.SpecificDay)
+                    return true;
 
 
             _dateToCheck = CheckRange();

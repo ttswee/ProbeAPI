@@ -25,7 +25,7 @@ namespace SensorTester
 
             var psFile = new PerceiverAPIs.FolderMaintenanceClient();
             var fileBytes = psFile.GetFile("c:\\APPLCRES\\TDE\\CRES2EFORM_002.TXT");
-            File.WriteAllBytes("c:\\swee\\fromserver.txt", fileBytes);
+            File.WriteAllBytes("c:\\swee\\fromserver3.txt", fileBytes);
 
             var MaintJobsAPI = new PerceiverAPIs.JobMaintenanceClient();
             var JobList = MaintJobsAPI.GetJobList();
@@ -43,9 +43,5 @@ namespace SensorTester
         }
     }
 
-    public class DriveSpaces
-    {
-        public string driveLetter { get; set; }
-        public long freeSpace { get; set; }
-    }
+
 }

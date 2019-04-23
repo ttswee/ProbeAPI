@@ -24,6 +24,7 @@ namespace PerceiverAPI
         private static bool bRun = true;
         private static string _AppPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private static string _LogPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
         private static int RunInterval = Convert.ToInt32(ConfigurationManager.AppSettings["SleepInterval"]);
         private static int EnableRestful = Convert.ToInt32(ConfigurationManager.AppSettings["EnableRestful"]);
         private static string hostURI = ConfigurationManager.AppSettings["APIUri"];
@@ -35,6 +36,13 @@ namespace PerceiverAPI
             //    EventLog.Source = "PerceiverService";
             //    EventLog.WriteEntry(string.Format("Configuration : {0}",hostURI), EventLogEntryType.Information);
             //}
+
+            using (EventLog eLog = new EventLog("Application"))
+            {
+                EventLog.Source = "PerceiverService";
+                EventLog.WriteEntry(string.Format("AppPath : {0}", _AppPath), EventLogEntryType.Information);
+                EventLog.WriteEntry(string.Format("LogPath : {0}", _LogPath), EventLogEntryType.Information);
+            }
             bRun = true;
             List<string> logMsg = new List<string>();
 
@@ -95,6 +103,12 @@ namespace PerceiverAPI
                 MSch _MaintenanceJobs = new MSch() { _AppPath = _AppPath};
                 _MaintenanceJobs._AppPath = _AppPath;
                 List<MaintSch> _listOfJobs = _MaintenanceJobs.GetAllJobs();
+                using (EventLog eLog = new EventLog("Application"))
+                {
+                    EventLog.Source = "PerceiverService";
+                    EventLog.WriteEntry(string.Format("Total Jobs : {0}", _listOfJobs.Count()), EventLogEntryType.Information);
+                }
+
                 MaintenanceJobs _JobExcuter = new MaintenanceJobs() { _LogPath = _LogPath };
                 _JobExcuter._LogPath = _LogPath;;
                 bool jStatus = false;
