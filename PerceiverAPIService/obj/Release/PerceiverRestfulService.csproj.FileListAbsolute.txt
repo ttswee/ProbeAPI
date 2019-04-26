@@ -20,3 +20,7 @@ C:\probeapi\PerceiverAPIService\bin\Release\PerceiverAPIService.pdb
 C:\probeapi\PerceiverAPIService\bin\Release\FileMaintenance.dll
 C:\probeapi\PerceiverAPIService\bin\Release\FileMaintenance.pdb
 C:\probeapi\PerceiverAPIService\obj\Release\PerceiverAPIService.pdb
+C:\probeapi\PerceiverAPIService\bin\Release\PerceiverDAL.dll
+C:\probeapi\PerceiverAPIService\bin\Release\DataAccess.dll
+C:\probeapi\PerceiverAPIService\bin\Release\PerceiverDAL.pdb
+C:\probeapi\PerceiverAPIService\bin\Release\DataAccess.pdb

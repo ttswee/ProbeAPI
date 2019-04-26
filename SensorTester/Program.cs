@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.IO;
+using System.Data;
 namespace SensorTester
 {
     class Program
     {
         static void Main(string[] args)
         {
-
             Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
             var ps = new PerceiverAPIs.SpaceProbeClient();
             var dSpace = ps.GetDriveInfo();
@@ -24,6 +24,7 @@ namespace SensorTester
             Console.WriteLine(dSpace);
 
             var psFile = new PerceiverAPIs.FolderMaintenanceClient();
+            psFile.ClientCredentials.UserName.UserName = "test";
             var fileBytes = psFile.GetFile("c:\\APPLCRES\\TDE\\CRES2EFORM_002.TXT");
             File.WriteAllBytes("c:\\swee\\fromserver3.txt", fileBytes);
 
@@ -36,10 +37,11 @@ namespace SensorTester
                 Console.WriteLine("Job Folder Name : {0}", J.FolderName);
             }
 
-
+            var cresapi = new PerceiverAPIs.CRESapiClient();
+            DataSet dt = new DataSet();
+            dt = cresapi.GetProcessAudit("4000003");
+            Console.WriteLine("Total Record : {0}",dt.Tables[0].Rows.Count);
             Console.ReadKey();
-
-
         }
     }
 

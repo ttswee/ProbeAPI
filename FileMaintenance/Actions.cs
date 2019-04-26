@@ -168,7 +168,7 @@ namespace FileMaintenance
 
             GetAllFilesList();
             List<FileInfo> _filesToDelete = _allFileList.Where(Fi => Fi.LastWriteTime <= _dateToCheck).ToList();
-            LogHeader.Add(string.Format("File before {0} will be deleted ", _dateToCheck));
+
             logJobSettings();
             string _targetFile = "";
             foreach (FileInfo _fileToDelete in _filesToDelete)
@@ -266,6 +266,7 @@ namespace FileMaintenance
         private void logJobSettings()
         {
             LogHeader.Add(string.Format(new string('-',30), DateTime.Now.ToString()));
+            LogHeader.Add(string.Format("File before {0} will be deleted ", _dateToCheck));
             LogHeader.Add(string.Format("Job start Time : {0} ", DateTime.Now.ToString()));
             var props = _jobToExecute.GetType().GetProperties();
             foreach (var prop in props)

@@ -78,6 +78,8 @@
     <None Include="Properties\DataSources\GlobalAPI.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\ProbeGateway.DriveSpaces.datasource" />
     <None Include="Properties\DataSources\SelfHost.DriveSpaces.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
     <None Include="Service References\PerceiverAPIs\PerceiverAPI.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -91,6 +93,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PerceiverAPIs\PerceiverAPI4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PerceiverAPIs\PerceiverAPI5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PerceiverAPIs\PerceiverAPIs.wsdl" />

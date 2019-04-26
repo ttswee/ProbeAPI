@@ -31,12 +31,6 @@ namespace PerceiverAPI
         private ServiceHost host = null;
         protected override void OnStart(string[] args)
         {
-            //using (EventLog eLog = new EventLog("Application"))
-            //{
-            //    EventLog.Source = "PerceiverService";
-            //    EventLog.WriteEntry(string.Format("Configuration : {0}",hostURI), EventLogEntryType.Information);
-            //}
-
             using (EventLog eLog = new EventLog("Application"))
             {
                 EventLog.Source = "PerceiverService";
@@ -46,14 +40,19 @@ namespace PerceiverAPI
             bRun = true;
             List<string> logMsg = new List<string>();
 
+            PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+
             Thread fileMainJob = new Thread(new ThreadStart(FMThread));
             fileMainJob.Start();
             //Start RESTFul listening
             if (EnableRestful == 1)
             {
-                //Uri baseAddress = new Uri("http://10.112.179.196:8080/PerceiverAPI");
+                NetTcpBinding nBinding = new NetTcpBinding();
+                nBinding.Security.Mode=SecurityMode.Message;
+                nBinding.Security.Message.ClientCredentialType=MessageCredentialType.UserName;
                 Uri baseAddress = new Uri(hostURI);
                 host = new ServiceHost(typeof(GlobalAPI.PerceiverAPIs), baseAddress);
+                host.AddServiceEndpoint(typeof(GlobalAPI.PerceiverAPIs), nBinding, "");
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
@@ -74,7 +73,7 @@ namespace PerceiverAPI
                         debug.IncludeExceptionDetailInFaults = true;
                     }
                 }
-
+                
                 host.Open();
                 using (EventLog eLog = new EventLog("Application"))
                 {

@@ -28,6 +28,7 @@
     <MetadataFile FileName="PerceiverAPIs.wsdl" MetadataType="Wsdl" ID="b0314c12-63da-4e42-9f86-77b883912bf7" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?wsdl" />
     <MetadataFile FileName="PerceiverAPI3.xsd" MetadataType="Schema" ID="a6dd04c0-14fe-4a45-95de-4b44eee5f05f" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd0" />
     <MetadataFile FileName="PerceiverAPI4.xsd" MetadataType="Schema" ID="8cc3519f-ec2a-4bc3-b1d3-da4629cf96b8" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd2" />
+    <MetadataFile FileName="PerceiverAPI5.xsd" MetadataType="Schema" ID="dcdf1a03-9db6-437a-b211-fc6c846a3d8c" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

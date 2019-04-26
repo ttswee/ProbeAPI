@@ -10,6 +10,10 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 using System.ServiceModel;
+using PerceiverDAL;
+using System.Data;
+using System.Configuration;
+using PerceiverAPI;
 namespace GlobalAPI
 {
     public class DriveSpaces
@@ -18,6 +22,14 @@ namespace GlobalAPI
         public long freeSpace { get; set; }
         public long TotalSpace { get; set; }
     }
+
+    public class ProcessAudit 
+    {
+        public string process_stage {get;set;}
+        public DateTime recordingdate {get;set;}
+
+    }
+
     [XmlType("MaintenanceSchedule")]
     [Serializable, DataContract]
     public class UserAuthenticity
@@ -50,23 +62,23 @@ namespace GlobalAPI
     {
         [OperationContract]
         List<MaintSch> GetJobList();
-
-
     }
 
-    public class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance
+
+
+    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance, ICRESapi
     {
-        public string clientMac { get; set; }
+        string macAddr { get; set; }
         public List<DriveSpaces> GetDriveInfo()
         {
-            if (!validateClient())
-            {
-                throw new Exception ("Unauthorized client");
-            }
+            //if (!validateClient())
+            //{
+            //    throw new Exception ("Unauthorized client");
+            //}
             try
             {
                 var dSpace = new List<DriveSpaces>();
-
+                
                 foreach (DriveInfo drive in DriveInfo.GetDrives())
                 {
                     if (drive.IsReady)
@@ -117,13 +129,13 @@ namespace GlobalAPI
 
         }
 
-        private bool validateClient()
+        public DataSet GetProcessAudit(string caseNo)
         {
-            if (clientMac == "E4-A7-A0-28-53-E3")
-                return true;
-            return false;
+            var api = new CRESapi();
+            return api.GetProcessAudit(caseNo);
         }
 
+        
     }
 
 

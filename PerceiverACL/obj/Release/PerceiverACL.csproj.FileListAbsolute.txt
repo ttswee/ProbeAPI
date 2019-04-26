@@ -1,0 +1,4 @@
+C:\probeapi\PerceiverACL\bin\Release\PerceiverACL.dll
+C:\probeapi\PerceiverACL\bin\Release\PerceiverACL.pdb
+C:\probeapi\PerceiverACL\obj\Release\PerceiverACL.dll
+C:\probeapi\PerceiverACL\obj\Release\PerceiverACL.pdb

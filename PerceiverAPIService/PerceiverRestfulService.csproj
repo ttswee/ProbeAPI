@@ -37,9 +37,11 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRESapi.cs" />
     <Compile Include="GlocalAPIs.cs" />
     <Compile Include="APIService.cs">
       <SubType>Component</SubType>
@@ -90,6 +93,10 @@
     <ProjectReference Include="..\FileMaintenance\FileMaintenance.csproj">
       <Project>{560f620a-adbd-4c12-8364-0b28ced1e055}</Project>
       <Name>FileMaintenance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PerceiverDAL\PerceiverDAL.csproj">
+      <Project>{8f2e96d2-c453-4fea-869c-1d05d18a8421}</Project>
+      <Name>PerceiverDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
