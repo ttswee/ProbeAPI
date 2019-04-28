@@ -14,12 +14,12 @@ namespace PerceiverAPI
         /// </summary>
         static void Main()
         {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[] 
-            { 
-                new PerceiverAPIService() 
-            };
-            ServiceBase.Run(ServicesToRun);
+            //ServiceBase[] ServicesToRun;
+            //ServicesToRun = new ServiceBase[] 
+            //{ 
+            //    new PerceiverAPIService() 
+            //};
+            //ServiceBase.Run(ServicesToRun);
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.InstallLog
+   assemblypath = C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.exe
+Installing service PerceiverAPIService...
+Service PerceiverAPIService has been successfully installed.
+Creating EventLog source PerceiverAPIService in log Application...
+Committing assembly 'C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.InstallLog
+   assemblypath = C:\ProbeAPI\PerceiverAPIService\bin\Release\PerceiverAPIService.exe

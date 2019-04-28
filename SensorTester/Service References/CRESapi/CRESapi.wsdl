@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CRESapi" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://msi:8081/CRESAPI?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://msi:8081/CRESAPI?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://msi:8081/CRESAPI?xsd=xsd2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICRESapi_GetProcessAudit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessAudit" />
+  </wsdl:message>
+  <wsdl:message name="ICRESapi_GetProcessAudit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProcessAuditResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICRESapi">
+    <wsdl:operation name="GetProcessAudit">
+      <wsdl:input wsam:Action="http://tempuri.org/ICRESapi/GetProcessAudit" message="tns:ICRESapi_GetProcessAudit_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/ICRESapi/GetProcessAuditResponse" message="tns:ICRESapi_GetProcessAudit_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICRESapi" type="tns:ICRESapi">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProcessAudit">
+      <soap:operation soapAction="http://tempuri.org/ICRESapi/GetProcessAudit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CRESapi">
+    <wsdl:port name="BasicHttpBinding_ICRESapi" binding="tns:BasicHttpBinding_ICRESapi">
+      <soap:address location="http://msi:8081/CRESAPI" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

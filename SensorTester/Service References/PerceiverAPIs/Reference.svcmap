@@ -18,17 +18,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.112.179.196:8080/PerceiverAPI" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8080/perceiverapi" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PerceiverAPI.disco" MetadataType="Disco" ID="a2e8780f-707b-462b-9ee5-db87d5f56772" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?disco" />
-    <MetadataFile FileName="PerceiverAPI.xsd" MetadataType="Schema" ID="c4f69ae3-a487-43c9-8de2-7aec67627490" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd1" />
-    <MetadataFile FileName="PerceiverAPI1.xsd" MetadataType="Schema" ID="90c9917d-250f-4d44-8499-04940abe1ecc" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd4" />
-    <MetadataFile FileName="PerceiverAPI2.xsd" MetadataType="Schema" ID="8367cbe1-7ea4-4c6a-a367-586301b5a885" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd3" />
-    <MetadataFile FileName="PerceiverAPIs.wsdl" MetadataType="Wsdl" ID="b0314c12-63da-4e42-9f86-77b883912bf7" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?wsdl" />
-    <MetadataFile FileName="PerceiverAPI3.xsd" MetadataType="Schema" ID="a6dd04c0-14fe-4a45-95de-4b44eee5f05f" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd0" />
-    <MetadataFile FileName="PerceiverAPI4.xsd" MetadataType="Schema" ID="8cc3519f-ec2a-4bc3-b1d3-da4629cf96b8" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd2" />
-    <MetadataFile FileName="PerceiverAPI5.xsd" MetadataType="Schema" ID="dcdf1a03-9db6-437a-b211-fc6c846a3d8c" SourceId="1" SourceUrl="http://10.112.179.196:8080/PerceiverAPI?xsd=xsd5" />
+    <MetadataFile FileName="PerceiverAPI6.xsd" MetadataType="Schema" ID="139b6968-3f4f-4d75-92e1-4f01d9a23a72" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?xsd=xsd0" />
+    <MetadataFile FileName="PerceiverAPIs1.wsdl" MetadataType="Wsdl" ID="d720463d-ff09-4d28-80ae-8f74eada3c0b" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?wsdl" />
+    <MetadataFile FileName="PerceiverAPI61.xsd" MetadataType="Schema" ID="c375cb91-716d-44ba-a220-703be51e5998" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?xsd=xsd1" />
+    <MetadataFile FileName="PerceiverAPI1.disco" MetadataType="Disco" ID="88a7150f-9994-49ba-b05f-57068c6a3094" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?disco" />
+    <MetadataFile FileName="PerceiverAPI62.xsd" MetadataType="Schema" ID="21503021-2e47-453b-a414-9d17a9c6ed8b" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?xsd=xsd3" />
+    <MetadataFile FileName="PerceiverAPI63.xsd" MetadataType="Schema" ID="1125da36-d5a3-46fe-9716-4df598a3fad9" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?xsd=xsd4" />
+    <MetadataFile FileName="PerceiverAPI64.xsd" MetadataType="Schema" ID="2a1cfb22-aed8-4ac9-8556-e7e6e3649dfc" SourceId="1" SourceUrl="http://msi:8080/PerceiverAPI?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -9,4 +9,8 @@ C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.exe
 C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.pdb
 C:\ProbeAPI\ProbeGateway\bin\x86\Release\ProbeGateway.exe
 C:\ProbeAPI\ProbeGateway\bin\x86\Release\ProbeGateway.pdb
-C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.csprojResolveAssemblyReference.cache
+C:\ProbeAPI\ProbeGateway\bin\x86\Release\FileMaintenance.dll
+C:\ProbeAPI\ProbeGateway\bin\x86\Release\FileMaintenance.pdb
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.csprojAssemblyReference.cache
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.csproj.CoreCompileInputs.cache
+C:\ProbeAPI\ProbeGateway\obj\x86\Release\ProbeGateway.csproj.CopyComplete

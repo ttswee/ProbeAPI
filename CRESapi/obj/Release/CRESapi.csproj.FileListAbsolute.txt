@@ -1,0 +1,9 @@
+C:\ProbeAPI\CRESapi\bin\Release\CRESapi.dll.config
+C:\ProbeAPI\CRESapi\bin\Release\CRESapi.dll
+C:\ProbeAPI\CRESapi\bin\Release\CRESapi.pdb
+C:\ProbeAPI\CRESapi\bin\Release\PerceiverDAL.dll
+C:\ProbeAPI\CRESapi\bin\Release\DataAccess.dll
+C:\ProbeAPI\CRESapi\bin\Release\PerceiverDAL.pdb
+C:\ProbeAPI\CRESapi\obj\Release\CRESapi.csprojResolveAssemblyReference.cache
+C:\ProbeAPI\CRESapi\obj\Release\CRESapi.dll
+C:\ProbeAPI\CRESapi\obj\Release\CRESapi.pdb

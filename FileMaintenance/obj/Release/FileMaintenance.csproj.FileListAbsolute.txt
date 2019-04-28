@@ -3,4 +3,3 @@ C:\probeapi\FileMaintenance\bin\Release\FileMaintenance.dll
 C:\probeapi\FileMaintenance\bin\Release\FileMaintenance.pdb
 C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.dll
 C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.pdb
-C:\probeapi\FileMaintenance\obj\Release\FileMaintenance.csprojResolveAssemblyReference.cache

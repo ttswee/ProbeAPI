@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8846e3f3-01b2-47a8-a386-6f9fcd941153" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8081/cresapi" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CRESAPI.xsd" MetadataType="Schema" ID="05c22436-2e17-4cd5-a06c-78e6baa9274f" SourceId="1" SourceUrl="http://msi:8081/CRESAPI?xsd=xsd0" />
+    <MetadataFile FileName="CRESapi.wsdl" MetadataType="Wsdl" ID="66ebfb14-79f1-41b9-bf14-57591efd5341" SourceId="1" SourceUrl="http://msi:8081/CRESAPI?wsdl" />
+    <MetadataFile FileName="CRESAPI1.xsd" MetadataType="Schema" ID="ab7c44f1-0586-46e3-bc9b-789bae515f5e" SourceId="1" SourceUrl="http://msi:8081/CRESAPI?xsd=xsd2" />
+    <MetadataFile FileName="CRESAPI.disco" MetadataType="Disco" ID="eb196e5d-7e44-450e-89d1-80c2e3a1235d" SourceId="1" SourceUrl="http://msi:8081/CRESAPI?disco" />
+    <MetadataFile FileName="CRESAPI2.xsd" MetadataType="Schema" ID="5820b1e6-fdb8-4d21-9430-65d13d4af1e6" SourceId="1" SourceUrl="http://msi:8081/CRESAPI?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

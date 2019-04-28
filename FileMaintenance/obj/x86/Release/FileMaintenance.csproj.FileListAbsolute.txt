@@ -2,3 +2,9 @@ C:\Visual Studio 2012\Projects\ProbeGateway\FileMaintenance\bin\x86\Release\File
 C:\Visual Studio 2012\Projects\ProbeGateway\FileMaintenance\bin\x86\Release\FileMaintenance.pdb
 C:\Visual Studio 2012\Projects\ProbeGateway\FileMaintenance\obj\x86\Release\FileMaintenance.dll
 C:\Visual Studio 2012\Projects\ProbeGateway\FileMaintenance\obj\x86\Release\FileMaintenance.pdb
+C:\ProbeAPI\FileMaintenance\bin\x86\Release\FileMaintenance.dll
+C:\ProbeAPI\FileMaintenance\bin\x86\Release\FileMaintenance.pdb
+C:\ProbeAPI\FileMaintenance\obj\x86\Release\FileMaintenance.csprojAssemblyReference.cache
+C:\ProbeAPI\FileMaintenance\obj\x86\Release\FileMaintenance.csproj.CoreCompileInputs.cache
+C:\ProbeAPI\FileMaintenance\obj\x86\Release\FileMaintenance.dll
+C:\ProbeAPI\FileMaintenance\obj\x86\Release\FileMaintenance.pdb

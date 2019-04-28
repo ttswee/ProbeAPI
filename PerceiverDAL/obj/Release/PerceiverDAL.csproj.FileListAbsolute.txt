@@ -1,7 +1,4 @@
 C:\probeapi\PerceiverDAL\bin\Release\PerceiverDAL.dll
 C:\probeapi\PerceiverDAL\bin\Release\PerceiverDAL.pdb
-C:\probeapi\PerceiverDAL\bin\Release\DataAccess.dll
 C:\probeapi\PerceiverDAL\obj\Release\PerceiverDAL.dll
 C:\probeapi\PerceiverDAL\obj\Release\PerceiverDAL.pdb
-C:\probeapi\PerceiverDAL\bin\Release\DataAccess.pdb
-C:\probeapi\PerceiverDAL\obj\Release\PerceiverDAL.csprojResolveAssemblyReference.cache

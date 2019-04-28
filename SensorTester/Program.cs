@@ -12,8 +12,13 @@ namespace SensorTester
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
-            var ps = new PerceiverAPIs.SpaceProbeClient();
+            BasicHttpBinding binding = new BasicHttpBinding();
+            binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
+            EndpointAddress address = new EndpointAddress("http://localhost:8080/perceiverapi");
+
+            var ps = new PerceiverAPIs.SpaceProbeClient(binding,address);
+            
             var dSpace = ps.GetDriveInfo();
             
             for (int i = 0; i< dSpace.Count() ; i++)
@@ -23,12 +28,13 @@ namespace SensorTester
             }
             Console.WriteLine(dSpace);
 
-            var psFile = new PerceiverAPIs.FolderMaintenanceClient();
+            var psFile = new PerceiverAPIs.FolderMaintenanceClient(binding, address);
             psFile.ClientCredentials.UserName.UserName = "test";
             var fileBytes = psFile.GetFile("c:\\APPLCRES\\TDE\\CRES2EFORM_002.TXT");
+            if ( fileBytes !=null && fileBytes.Length>0)
             File.WriteAllBytes("c:\\swee\\fromserver3.txt", fileBytes);
 
-            var MaintJobsAPI = new PerceiverAPIs.JobMaintenanceClient();
+            var MaintJobsAPI = new PerceiverAPIs.JobMaintenanceClient(binding, address);
             var JobList = MaintJobsAPI.GetJobList();
             foreach (PerceiverAPIs.MaintSch J in JobList)
             {
@@ -37,10 +43,10 @@ namespace SensorTester
                 Console.WriteLine("Job Folder Name : {0}", J.FolderName);
             }
 
-            var cresapi = new PerceiverAPIs.CRESapiClient();
-            DataSet dt = new DataSet();
-            dt = cresapi.GetProcessAudit("4000003");
-            Console.WriteLine("Total Record : {0}",dt.Tables[0].Rows.Count);
+            //var cresapi = new PerceiverAPIs.CRESapiClient();
+            //DataSet dt = new DataSet();
+            //dt = cresapi.GetProcessAudit("4000003");
+            //Console.WriteLine("Total Record : {0}",dt.Tables[0].Rows.Count);
             Console.ReadKey();
         }
     }

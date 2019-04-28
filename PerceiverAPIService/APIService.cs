@@ -24,11 +24,41 @@ namespace PerceiverAPI
         private static bool bRun = true;
         private static string _AppPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private static string _LogPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-        private static int RunInterval = Convert.ToInt32(ConfigurationManager.AppSettings["SleepInterval"]);
         private static int EnableRestful = Convert.ToInt32(ConfigurationManager.AppSettings["EnableRestful"]);
+        private static int RunInterval = Convert.ToInt32(ConfigurationManager.AppSettings["SleepInterval"]);
+
         private static string hostURI = ConfigurationManager.AppSettings["APIUri"];
+        private static string CRESapiURI = ConfigurationManager.AppSettings["CRESAPIUri"];
+
+
         private ServiceHost host = null;
+        private ServiceHost CREShost = null;
+        internal void TestStartupAndStop(string[] args)
+        {
+            this.OnStart(args);
+            Console.ReadLine();
+            this.OnStop();
+        }
+
+
+        static void Main(string[] args)
+        {
+            if (Environment.UserInteractive)
+            {
+                PerceiverAPIService svc = new PerceiverAPIService();
+                svc.TestStartupAndStop(args);
+            }
+            else
+            {
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[] 
+            { 
+                new PerceiverAPIService() 
+            };
+                ServiceBase.Run(ServicesToRun);
+            }
+        }
+
         protected override void OnStart(string[] args)
         {
             using (EventLog eLog = new EventLog("Application"))
@@ -40,54 +70,21 @@ namespace PerceiverAPI
             bRun = true;
             List<string> logMsg = new List<string>();
 
-            PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+
 
             Thread fileMainJob = new Thread(new ThreadStart(FMThread));
             fileMainJob.Start();
-            //Start RESTFul listening
-            if (EnableRestful == 1)
-            {
-                NetTcpBinding nBinding = new NetTcpBinding();
-                nBinding.Security.Mode=SecurityMode.Message;
-                nBinding.Security.Message.ClientCredentialType=MessageCredentialType.UserName;
-                Uri baseAddress = new Uri(hostURI);
-                host = new ServiceHost(typeof(GlobalAPI.PerceiverAPIs), baseAddress);
-                host.AddServiceEndpoint(typeof(GlobalAPI.PerceiverAPIs), nBinding, "");
-                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                smb.HttpGetEnabled = true;
-                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 
-                host.Description.Behaviors.Add(smb);
+            Thread Globalapi = new Thread(new ThreadStart(()=>InstanciateAPI(host,hostURI.Replace("{0}",Environment.MachineName),typeof(GlobalAPI.PerceiverAPIs))));
+            Globalapi.Start();
 
-                ServiceDebugBehavior debug = host.Description.Behaviors.Find<ServiceDebugBehavior>();
-
-                if (debug == null)
-                {
-                    host.Description.Behaviors.Add(
-                         new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
-                }
-                else
-                {
-                    if (!debug.IncludeExceptionDetailInFaults)
-                    {
-                        debug.IncludeExceptionDetailInFaults = true;
-                    }
-                }
-                
-                host.Open();
-                using (EventLog eLog = new EventLog("Application"))
-                {
-                    EventLog.Source = "PerceiverService";
-                    EventLog.WriteEntry(string.Format("API Listener state {0}", host.State), EventLogEntryType.Information);
-                }
-            }
+            Thread CREShost = new Thread(new ThreadStart(() => InstanciateAPI(host, CRESapiURI.Replace("{0}", Environment.MachineName), typeof(CRESapi.CRESapi))));
+            CREShost.Start();
         }
 
         protected override void OnStop()
         {
             bRun = false;
-            if (EnableRestful == 1)
-                host.Close();
         }
 
         private void FMThread()
@@ -99,7 +96,7 @@ namespace PerceiverAPI
             }
             while (bRun)
             {
-                MSch _MaintenanceJobs = new MSch() { _AppPath = _AppPath};
+                MSch _MaintenanceJobs = new MSch() { _AppPath = _AppPath };
                 _MaintenanceJobs._AppPath = _AppPath;
                 List<MaintSch> _listOfJobs = _MaintenanceJobs.GetAllJobs();
                 using (EventLog eLog = new EventLog("Application"))
@@ -109,7 +106,7 @@ namespace PerceiverAPI
                 }
 
                 MaintenanceJobs _JobExcuter = new MaintenanceJobs() { _LogPath = _LogPath };
-                _JobExcuter._LogPath = _LogPath;;
+                _JobExcuter._LogPath = _LogPath; ;
                 bool jStatus = false;
                 foreach (MaintSch _Job in _listOfJobs)
                 {
@@ -120,8 +117,61 @@ namespace PerceiverAPI
                         continue;
                 }
                 _MaintenanceJobs = null;
-                Thread.Sleep(RunInterval*60000);
+                Thread.Sleep(RunInterval * 60000);
             }
         }
+
+        private void InstanciateAPI(ServiceHost _host, string baseaddr, Type ServiceType)
+        {
+
+            if (EnableRestful == 1)
+            {
+                BasicHttpBinding binding = new BasicHttpBinding();
+                binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
+                binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
+                
+                EndpointAddress address = new EndpointAddress(baseaddr);
+                Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
+
+                Type[] allIface = ServiceType.GetInterfaces();
+                Uri baseAddress = new Uri(baseaddr);
+                _host = new ServiceHost(ServiceType);
+                foreach (Type tp in allIface)
+                {
+                    _host.AddServiceEndpoint(tp, binding, baseaddr);
+                }
+                
+                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
+                smb.HttpGetEnabled = true;
+                smb.HttpGetUrl = new Uri(baseaddr);
+                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+                _host.Description.Behaviors.Add(smb);
+                
+                ServiceDebugBehavior debug = _host.Description.Behaviors.Find<ServiceDebugBehavior>();
+
+                if (debug == null)
+                {
+                    _host.Description.Behaviors.Add(
+                         new ServiceDebugBehavior() { IncludeExceptionDetailInFaults = true });
+                }
+                else
+                {
+                    if (!debug.IncludeExceptionDetailInFaults)
+                    {
+                        debug.IncludeExceptionDetailInFaults = true;
+                    }
+                }
+
+                _host.Open();
+                using (EventLog eLog = new EventLog("Application"))
+                {
+                    EventLog.Source = "PerceiverService";
+                    EventLog.WriteEntry(string.Format("API Listener Type : {0}, state : {1}", ServiceType, _host.State), EventLogEntryType.Information);
+                }
+            }
+        }
+
+    
+
     }
 }

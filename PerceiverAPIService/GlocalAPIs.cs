@@ -9,8 +9,7 @@ using FileMaintenance;
 using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
-using System.ServiceModel;
-using PerceiverDAL;
+//using PerceiverDAL;
 using System.Data;
 using System.Configuration;
 using PerceiverAPI;
@@ -65,25 +64,25 @@ namespace GlobalAPI
     }
 
 
-
-    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance, ICRESapi
+    [ServiceBehavior(InstanceContextMode=InstanceContextMode.PerSession)]
+    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance
     {
-        string macAddr { get; set; }
         public List<DriveSpaces> GetDriveInfo()
         {
-            //if (!validateClient())
-            //{
-            //    throw new Exception ("Unauthorized client");
-            //}
             try
             {
+                if (!AccessAllowed(ServiceSecurityContext.Current.PrimaryIdentity.Name))
+                {
+                    throw new Exception("Unauthorized");
+                }
+
                 var dSpace = new List<DriveSpaces>();
-                
+
                 foreach (DriveInfo drive in DriveInfo.GetDrives())
                 {
                     if (drive.IsReady)
                     {
-                        dSpace.Add(new DriveSpaces() { driveLetter = drive.Name, freeSpace = drive.TotalFreeSpace,TotalSpace=drive.TotalSize });
+                        dSpace.Add(new DriveSpaces() { driveLetter = drive.Name, freeSpace = drive.TotalFreeSpace, TotalSpace = drive.TotalSize });
                     }
                 }
                 return dSpace;
@@ -129,10 +128,9 @@ namespace GlobalAPI
 
         }
 
-        public DataSet GetProcessAudit(string caseNo)
+        private bool AccessAllowed(string userName)
         {
-            var api = new CRESapi();
-            return api.GetProcessAudit(caseNo);
+            return true;
         }
 
         

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{79C40A14-F0CB-4482-9710-802CB89AEE34}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PerceiverAPI</RootNamespace>
     <AssemblyName>PerceiverAPIService</AssemblyName>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -50,7 +53,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CRESapi.cs" />
     <Compile Include="GlocalAPIs.cs" />
     <Compile Include="APIService.cs">
       <SubType>Component</SubType>
@@ -58,7 +60,6 @@
     <Compile Include="APIService.Designer.cs">
       <DependentUpon>APIService.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -90,13 +91,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CRESapi\CRESapi.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>CRESapi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FileMaintenance\FileMaintenance.csproj">
       <Project>{560f620a-adbd-4c12-8364-0b28ced1e055}</Project>
       <Name>FileMaintenance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PerceiverDAL\PerceiverDAL.csproj">
-      <Project>{8f2e96d2-c453-4fea-869c-1d05d18a8421}</Project>
-      <Name>PerceiverDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
