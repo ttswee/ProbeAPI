@@ -4,3 +4,9 @@ C:\probeapi\SensorTester\bin\Release\SensorTester.pdb
 C:\probeapi\SensorTester\obj\Release\SensorTester.exe
 C:\probeapi\SensorTester\obj\Release\SensorTester.pdb
 C:\probeapi\SensorTester\obj\Release\SensorTester.csprojResolveAssemblyReference.cache
+C:\perceiver\SensorTester\bin\Release\SensorTester.exe.config
+C:\perceiver\SensorTester\bin\Release\SensorTester.exe
+C:\perceiver\SensorTester\bin\Release\SensorTester.pdb
+C:\perceiver\SensorTester\obj\Release\SensorTester.csprojResolveAssemblyReference.cache
+C:\perceiver\SensorTester\obj\Release\SensorTester.exe
+C:\perceiver\SensorTester\obj\Release\SensorTester.pdb

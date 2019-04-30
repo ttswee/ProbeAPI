@@ -71,13 +71,13 @@ namespace GlobalAPI
         {
             try
             {
-                if (!AccessAllowed(ServiceSecurityContext.Current.PrimaryIdentity.Name))
-                {
-                    throw new Exception("Unauthorized");
-                }
+                //if (!AccessAllowed(ServiceSecurityContext.Current.cl))
+                //{
+                //    throw new Exception("Unauthorized");
+                //}
 
                 var dSpace = new List<DriveSpaces>();
-
+                dSpace.Add(new DriveSpaces { driveLetter = ServiceSecurityContext.Anonymous.WindowsIdentity.User.ToString(), freeSpace = 0, TotalSpace = 0 });
                 foreach (DriveInfo drive in DriveInfo.GetDrives())
                 {
                     if (drive.IsReady)

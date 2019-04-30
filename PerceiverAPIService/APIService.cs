@@ -127,11 +127,11 @@ namespace PerceiverAPI
             if (EnableRestful == 1)
             {
                 BasicHttpBinding binding = new BasicHttpBinding();
-                binding.Security.Mode = BasicHttpSecurityMode.TransportCredentialOnly;
-                binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
+                binding.Security.Mode = BasicHttpSecurityMode.None;
+                binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
                 
                 EndpointAddress address = new EndpointAddress(baseaddr);
-                Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
+                //Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
 
                 Type[] allIface = ServiceType.GetInterfaces();
                 Uri baseAddress = new Uri(baseaddr);

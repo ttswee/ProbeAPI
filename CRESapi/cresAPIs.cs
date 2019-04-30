@@ -20,9 +20,9 @@ namespace CRESapi
     public class CRESapi:ICRESapi
     {
 
-        public string macAddr { get; set; }
         public DataSet GetProcessAudit(string CaseNo)
         {
+            Console.WriteLine(PerceiverDAL.PerceiverDAL.APPDBConnStr);
             PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
             var dalapi = new PerceiverDAL.ProcessAudit();
             DataSet dsreturn = new DataSet();
