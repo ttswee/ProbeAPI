@@ -6,3 +6,11 @@ C:\probeapi\ProbeGateway\bin\Release\FileMaintenance.pdb
 C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.csprojResolveAssemblyReference.cache
 C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.exe
 C:\probeapi\ProbeGateway\obj\Release\ProbeGateway.pdb
+C:\perceiver\ProbeGateway\bin\Release\ProbeGateway.exe.config
+C:\perceiver\ProbeGateway\bin\Release\ProbeGateway.exe
+C:\perceiver\ProbeGateway\bin\Release\ProbeGateway.pdb
+C:\perceiver\ProbeGateway\bin\Release\FileMaintenance.dll
+C:\perceiver\ProbeGateway\bin\Release\FileMaintenance.pdb
+C:\perceiver\ProbeGateway\obj\Release\ProbeGateway.csprojResolveAssemblyReference.cache
+C:\perceiver\ProbeGateway\obj\Release\ProbeGateway.exe
+C:\perceiver\ProbeGateway\obj\Release\ProbeGateway.pdb

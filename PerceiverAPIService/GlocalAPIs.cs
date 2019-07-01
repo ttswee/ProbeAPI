@@ -54,6 +54,8 @@ namespace GlobalAPI
 
         [OperationContract]
         byte[] GetFile(string FileName);
+
+
     }
 
     [ServiceContract]
@@ -71,13 +73,13 @@ namespace GlobalAPI
         {
             try
             {
-                //if (!AccessAllowed(ServiceSecurityContext.Current.cl))
+                //if (!AccessAllowed(ServiceSecurityContext.Current.WindowsIdentity.Name))
                 //{
                 //    throw new Exception("Unauthorized");
                 //}
 
                 var dSpace = new List<DriveSpaces>();
-                dSpace.Add(new DriveSpaces { driveLetter = ServiceSecurityContext.Anonymous.WindowsIdentity.User.ToString(), freeSpace = 0, TotalSpace = 0 });
+                //dSpace.Add(new DriveSpaces { driveLetter = ServiceSecurityContext.Anonymous.WindowsIdentity.User.ToString(), freeSpace = 0, TotalSpace = 0 });
                 foreach (DriveInfo drive in DriveInfo.GetDrives())
                 {
                     if (drive.IsReady)

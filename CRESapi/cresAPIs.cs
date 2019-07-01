@@ -9,28 +9,290 @@ using System.Xml.Serialization;
 using System.ServiceModel;
 using System.Data;
 using System.Configuration;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Web;
+using System.IO;
+using System.Diagnostics;
+using PerceiverDAL;
+using System.Security.Cryptography;
 namespace CRESapi
 {
+    public class ProcessLogs
+    {
+        private string computerName { get; set; }
+        private string queryText { get; set; }
+        private bool status { get; set; }
+    }
+
+    public class ProcessCode
+    {
+        public int status { get; set; }
+        public string xmlName { get; set; }
+
+        public static List<ProcessCode> pCodes = new List<ProcessCode>();
+
+        public static void setProcessCodes()
+        {
+            PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+            DataTable CD_PROCESS = new DataTable();
+            CD_PROCESS = new ProcessCodeTable().getCD_Process();
+            //List<ProcessCode> pCodes = new List<ProcessCode>();
+
+            for (int icnt = 0; icnt < CD_PROCESS.Rows.Count - 1; icnt++)
+            {
+                pCodes.Add(new ProcessCode { status = (int)CD_PROCESS.Rows[icnt]["CD_PSTATUS_CODE"], xmlName = CD_PROCESS.Rows[icnt]["CD_PSTATUS_TYPE"].ToString() });
+            }
+
+            //return new List<ProcessCode>();
+        }
+    }
+
+    public class validUsers
+    {
+        public string macName { get; set; }
+        public string userName { get; set; }
+    }
+
+    public static class userList
+    {
+
+        public static List<validUsers> usersList { get; set; }
+
+        public static void LoadList()
+        {
+            usersList = new List<validUsers>();
+            usersList.Add(new validUsers() { macName = "MYNPF0K01YF", userName = "1467766" });
+            usersList.Add(new validUsers() { macName = "MYNPF0QF95K", userName = "1434247" });
+            usersList.Add(new validUsers() { macName = "MYNPF0QEV3P", userName = "1450703" });
+            usersList.Add(new validUsers() { macName = "MYNPF0DQFDS", userName = "1498354" });
+        }
+
+    }
+
+    public class interfaceFiles
+    {
+        public string fileName { get; set; }
+        public byte[] encFile { get; set; }
+    }
+
     [ServiceContract]
     public interface ICRESapi
     {
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
+        DataTable GetProcessAudit(string caseNo);
+
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
+        DataTable GetGARecords();
+
         [OperationContract]
-        DataSet GetProcessAudit(string caseNo);
+        [WebGet]
+        List<interfaceFiles> GetInterFaceFile(string caseNo, string pstatus, string ifPah, string secToken);
     }
-    public class CRESapi:ICRESapi
+
+    //[ServiceContract]
+    //public interface ICRESAPICallBack
+    //{
+    //    [OperationContract]
+    //    void onRecordGet(DataTable dtResult);
+    //}
+
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
+    public class CRESapi : ICRESapi
     {
 
-        public DataSet GetProcessAudit(string CaseNo)
+        public DataTable GetProcessAudit(string CaseNo)
         {
-            Console.WriteLine(PerceiverDAL.PerceiverDAL.APPDBConnStr);
+            try
+            {
+                PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+                var dalapi = new PerceiverDAL.ProcessAudit();
+                DataTable dt = new DataTable();
+
+                dt = dalapi.GetProcessAudit(CaseNo);
+                dt.TableName = "ProcessAudit";
+                //OperationContext.Current.GetCallbackChannel<ICRESAPICallBack>().onRecordGet(dt);
+                Console.WriteLine(dt.Rows.Count);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                ex.ToString();
+                throw;
+            }
+        }
+
+        public DataTable GetGARecords()
+        {
+
             PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
-            var dalapi = new PerceiverDAL.ProcessAudit();
-            DataSet dsreturn = new DataSet();
+            var dalapi = new PerceiverDAL.GATables();
             DataTable dt = new DataTable();
-            dt = dalapi.GetProcessAudit(CaseNo);
-            dsreturn.Tables.Add(dt);
-            return dsreturn;
+
+            dt = dalapi.GetAllRecords();
+
+            //OperationContext.Current.GetCallbackChannel<ICRESAPICallBack>().onRecordGet(dt);
+            return dt;
+        }
+
+        public bool execStatement(string sqlStatement, string MachineName)
+        {
+            PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+            return false;
+        }
+
+
+        public List<interfaceFiles> GetInterFaceFile(string caseNo, string pstatus, string ifPath, string secToken)
+        {
+            try
+            {
+                PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
+                List<interfaceFiles> iFiles = new List<interfaceFiles>();
+                List<string> fileNames = new List<string>();
+
+                DirectoryInfo dirInfo;
+                
+                if (validateToken(secToken))
+                {
+                    using (EventLog eLog = new EventLog("Application"))
+                    {
+                        eLog.Source = "PerceiverService";
+                        eLog.WriteEntry(string.Format("token ={0}", DecryptToken(secToken).ToString()));
+                    }
+                    dirInfo = new DirectoryInfo(ifPath);
+                    //if (ifPath == "EBBS")
+                    //{
+                        List<FileInfo> ListToRet = dirInfo.EnumerateFiles().Take(500000).ToList();
+                        //if (File.Exists(fileNames[0]))
+                        //{
+                        //using (EventLog eLog = new EventLog("Application"))
+                        //{
+                        //    eLog.Source = "PerceiverService";
+                        //    eLog.WriteEntry(string.Format("CRES CASE NO : {0}", caseNo));
+                        //}
+                        List<FileInfo> found = ListToRet.FindAll(x => x.Name.Contains(caseNo));
+                        string[] allstates = pstatus.Split(',');
+                        foreach (string istatus in allstates)
+                        {
+                            ProcessCode pcode = ProcessCode.pCodes.Find(x => x.status == int.Parse(istatus));
+                            if (pcode != null)
+                            {
+                                List<FileInfo> foundstatus = found.FindAll(x => x.Name.Contains(pcode.xmlName));
+                                if (foundstatus.Count > 0)
+                                {
+                                    foreach (FileInfo fi in foundstatus)
+                                    {
+                                        using (EventLog eLog = new EventLog("Application"))
+                                        {
+                                            eLog.Source = "PerceiverService";
+                                            eLog.WriteEntry(string.Format("file name : {0}", fi.FullName));
+                                        }
+                                        iFiles.Add(new interfaceFiles { fileName = fi.Name, encFile = encFile(File.ReadAllBytes(fi.FullName),secToken)});
+                                    }
+                                }
+                            }
+                        }
+                    //}
+                    return iFiles;
+                }
+                else
+                {
+                    return iFiles;
+                }
+            }
+            catch (Exception ex)
+            {
+                using (EventLog eLog = new EventLog("Application"))
+                {
+                    eLog.Source = "PerceiverService";
+                    eLog.WriteEntry(string.Format("Exception {0}", ex.ToString()));
+                }
+                return new List<interfaceFiles>();
+            }
+        }
+
+
+        private static bool validateToken(string secToken)
+        {
+
+            string dectoken = DecryptToken(secToken);
+            string[] tokenval = dectoken.Split('!');
+            DateTime tokentime = DateTime.Now;
+            userList.LoadList();
+
+            var result = userList.usersList.FindAll(x => x.macName == tokenval[0] && x.userName == tokenval[1]);
+            if (result.Count > 0)
+            {
+                DateTime.TryParse(tokenval[2], out tokentime);
+                TimeSpan totalSecs = DateTime.Now - tokentime;
+                if (totalSecs.TotalSeconds > 5)
+                    return false;
+                else
+                    return true;
+            }
+            else
+                return false;
+        }
+
+
+
+        public static string DecryptToken(string cipherText)
+        {
+
+            string EncryptionKey = "cresrocks";
+            cipherText = cipherText.Replace(" ", "+");
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+
+        private static byte[] encFile(byte[] uncText, string EncryptKey = "")
+        {
+            //string secToken5mins = "";
+            //string macName = Environment.MachineName;
+            //string userID = Environment.UserName;
+            //DateTime forENC = DateTime.Now;
+            //string unEnc = macName + "!" + userID + "!" + forENC;
+            //byte[] uncText = Encoding.Unicode.GetBytes(unEnc);
+            //string EncryptKey = "cresrocks";
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pik = new Rfc2898DeriveBytes(EncryptKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pik.GetBytes(32);
+                encryptor.IV = pik.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(uncText, 0, uncText.Length);
+                        cs.Close();
+                    }
+                    return ms.ToArray();
+                    //secToken5mins = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+
+
+            //return secToken5mins;
         }
     }
+
 }
 

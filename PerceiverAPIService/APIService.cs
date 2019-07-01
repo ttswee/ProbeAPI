@@ -13,6 +13,7 @@ using System.IO;
 using System.Configuration;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using CRESapi;
 namespace PerceiverAPI
 {
     public partial class PerceiverAPIService : ServiceBase
@@ -29,10 +30,10 @@ namespace PerceiverAPI
 
         private static string hostURI = ConfigurationManager.AppSettings["APIUri"];
         private static string CRESapiURI = ConfigurationManager.AppSettings["CRESAPIUri"];
-
+        private static string bindingAdd = ConfigurationManager.AppSettings["BindingIP"];
 
         private ServiceHost host = null;
-        private ServiceHost CREShost = null;
+        private ServiceHost _CREShost = null;
         internal void TestStartupAndStop(string[] args)
         {
             this.OnStart(args);
@@ -70,16 +71,16 @@ namespace PerceiverAPI
             bRun = true;
             List<string> logMsg = new List<string>();
 
-
-
             Thread fileMainJob = new Thread(new ThreadStart(FMThread));
             fileMainJob.Start();
 
-            Thread Globalapi = new Thread(new ThreadStart(()=>InstanciateAPI(host,hostURI.Replace("{0}",Environment.MachineName),typeof(GlobalAPI.PerceiverAPIs))));
-            Globalapi.Start();
+            //Thread Globalapi = new Thread(new ThreadStart(() => InstanciateAPI(host, hostURI.Replace("{0}", bindingAdd), typeof(GlobalAPI.PerceiverAPIs))));
+            //Globalapi.Start();
 
-            Thread CREShost = new Thread(new ThreadStart(() => InstanciateAPI(host, CRESapiURI.Replace("{0}", Environment.MachineName), typeof(CRESapi.CRESapi))));
+            Thread CREShost = new Thread(new ThreadStart(() => InstanciateAPI(_CREShost, CRESapiURI.Replace("{0}", bindingAdd), typeof(CRESapi.CRESapi))));
             CREShost.Start();
+
+            ProcessCode.setProcessCodes();
         }
 
         protected override void OnStop()
@@ -129,9 +130,10 @@ namespace PerceiverAPI
                 BasicHttpBinding binding = new BasicHttpBinding();
                 binding.Security.Mode = BasicHttpSecurityMode.None;
                 binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
-                
+                binding.MaxBufferPoolSize = 200000;
+                binding.MaxBufferSize = 200000;
+                binding.MaxReceivedMessageSize = 200000;
                 EndpointAddress address = new EndpointAddress(baseaddr);
-                //Console.WriteLine(System.Security.Principal.WindowsIdentity.GetCurrent().Name);
 
                 Type[] allIface = ServiceType.GetInterfaces();
                 Uri baseAddress = new Uri(baseaddr);
@@ -145,6 +147,7 @@ namespace PerceiverAPI
                 smb.HttpGetEnabled = true;
                 smb.HttpGetUrl = new Uri(baseaddr);
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
+               
                 _host.Description.Behaviors.Add(smb);
                 
                 ServiceDebugBehavior debug = _host.Description.Behaviors.Find<ServiceDebugBehavior>();
@@ -166,7 +169,7 @@ namespace PerceiverAPI
                 using (EventLog eLog = new EventLog("Application"))
                 {
                     EventLog.Source = "PerceiverService";
-                    EventLog.WriteEntry(string.Format("API Listener Type : {0}, state : {1}", ServiceType, _host.State), EventLogEntryType.Information);
+                    EventLog.WriteEntry(string.Format("API Listener Type : {0}, state : {1}, address : {2}", ServiceType, _host.State,baseaddr), EventLogEntryType.Information);
                 }
             }
         }

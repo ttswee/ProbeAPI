@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerceiverDAL", "PerceiverDA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRESapi", "CRESapi\CRESapi.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSSTools", "PSSTools\PSSTools.csproj", "{95CCB6CA-5D03-461C-9275-8C81691A75F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSSClient", "PSSClient\PSSClient.csproj", "{DAB020A9-5D08-4518-828A-3F5C72BA8F70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -133,6 +137,26 @@ Global
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|x86.ActiveCfg = Release|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{95CCB6CA-5D03-461C-9275-8C81691A75F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DAB020A9-5D08-4518-828A-3F5C72BA8F70}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

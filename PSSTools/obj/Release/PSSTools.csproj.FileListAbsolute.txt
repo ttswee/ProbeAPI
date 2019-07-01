@@ -1,0 +1,10 @@
+C:\perceiver\PSSTools\bin\Release\PSSTools.exe.config
+C:\perceiver\PSSTools\bin\Release\PSSTools.exe
+C:\perceiver\PSSTools\bin\Release\PSSTools.pdb
+C:\perceiver\PSSTools\obj\Release\PSSTools.csprojResolveAssemblyReference.cache
+C:\perceiver\PSSTools\obj\Release\PSSTools.EBBSQueue.resources
+C:\perceiver\PSSTools\obj\Release\PSSTools.mstForm.resources
+C:\perceiver\PSSTools\obj\Release\PSSTools.Properties.Resources.resources
+C:\perceiver\PSSTools\obj\Release\PSSTools.csproj.GenerateResource.Cache
+C:\perceiver\PSSTools\obj\Release\PSSTools.exe
+C:\perceiver\PSSTools\obj\Release\PSSTools.pdb

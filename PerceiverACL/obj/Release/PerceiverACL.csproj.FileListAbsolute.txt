@@ -2,3 +2,8 @@ C:\probeapi\PerceiverACL\bin\Release\PerceiverACL.dll
 C:\probeapi\PerceiverACL\bin\Release\PerceiverACL.pdb
 C:\probeapi\PerceiverACL\obj\Release\PerceiverACL.dll
 C:\probeapi\PerceiverACL\obj\Release\PerceiverACL.pdb
+C:\perceiver\PerceiverACL\bin\Release\PerceiverACL.dll
+C:\perceiver\PerceiverACL\bin\Release\PerceiverACL.pdb
+C:\perceiver\PerceiverACL\obj\Release\PerceiverACL.csprojResolveAssemblyReference.cache
+C:\perceiver\PerceiverACL\obj\Release\PerceiverACL.dll
+C:\perceiver\PerceiverACL\obj\Release\PerceiverACL.pdb

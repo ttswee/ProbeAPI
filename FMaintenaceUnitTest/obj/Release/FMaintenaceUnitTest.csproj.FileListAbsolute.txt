@@ -5,3 +5,10 @@ C:\probeapi\FMaintenaceUnitTest\bin\Release\FileMaintenance.pdb
 C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.csprojResolveAssemblyReference.cache
 C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.dll
 C:\probeapi\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.pdb
+C:\perceiver\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.dll
+C:\perceiver\FMaintenaceUnitTest\bin\Release\FMaintenaceUnitTest.pdb
+C:\perceiver\FMaintenaceUnitTest\bin\Release\FileMaintenance.dll
+C:\perceiver\FMaintenaceUnitTest\bin\Release\FileMaintenance.pdb
+C:\perceiver\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.csprojResolveAssemblyReference.cache
+C:\perceiver\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.dll
+C:\perceiver\FMaintenaceUnitTest\obj\Release\FMaintenaceUnitTest.pdb
