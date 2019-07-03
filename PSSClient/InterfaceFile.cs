@@ -22,10 +22,18 @@ namespace PSSClient
         private void InterfaceFile_Load(object sender, EventArgs e)
         {
             
-            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "EBBS", path = "e:\\ebbs\\done" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "ICM", path = "e:\\ebbs\\done" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "EBBS", path = "e:\\ebbs\\done" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "CCMS", path = "e:\\ebbs\\done" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "EBBS", path = "e:\\ebbs\\done",apiEndPoint="http://10.112.179.196:5880/cresapi.svc" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "ICM", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "EBBS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "CCMS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
+
+            var path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "IFiles.XML");
+            System.Xml.Serialization.XmlSerializer writer =
+                     new System.Xml.Serialization.XmlSerializer(ifileList.GetType());
+            System.IO.FileStream file = System.IO.File.Create(path);
+            writer.Serialize(file, ifileList);
+            file.Close();
+
 
             var _serverList = ifileList.Select(x => x.serverName).Distinct();
 
@@ -46,8 +54,9 @@ namespace PSSClient
 
         private void cmbSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var _path = ifileList.Where(x => x.serverName == cmbServer.SelectedItem.ToString() && x.system == cmbSystem.SelectedItem.ToString()).Select(x => x.path).ToList();
-            this.lblPath.Text = _path[0];
+            var _path = ifileList.Where(x => x.serverName == cmbServer.SelectedItem.ToString() && x.system == cmbSystem.SelectedItem.ToString()).Select(x => new {x.path,x.apiEndPoint}).ToList();
+            this.lblPath.Text = string.Format("Path : {0}",_path[0].path);
+            this.lblEndPoint.Text = string.Format("End point : {0}", _path[0].apiEndPoint); 
         }
 
         private void btngetFile_Click(object sender, EventArgs e)
@@ -58,22 +67,11 @@ namespace PSSClient
                 CRESbinding.Security.Mode = BasicHttpSecurityMode.None;
                 CRESbinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
                 CRESbinding.MaxReceivedMessageSize = 2000000;
-                EndpointAddress CRESaddress = new EndpointAddress(string.Format(ConfigurationManager.AppSettings["CRESapiUri"], ConfigurationManager.AppSettings["serverIP"]));
-
+                EndpointAddress CRESaddress = new EndpointAddress(this.lblEndPoint.Text);
                 ChannelFactory<CRESapi.ICRESapi> CRESApiFac = new ChannelFactory<CRESapi.ICRESapi>(CRESbinding, CRESaddress);
                 var CRESServiceContract = CRESApiFac.CreateChannel();
-                int stop = 0;
                 string caseno = this.txtCaseNo.Text;
                 List<CRESapi.interfaceFiles> Results = new List<CRESapi.interfaceFiles>();
-                //while (stop == 0)
-                //{
-                    //Console.WriteLine("Enter case number or enter to end :");
-                    //caseno = Console.ReadLine();
-                    //if (caseno == "")
-                    //{
-                    //    stop = 1;
-                    //    break;
-                    //}
                     string secToken = ACLs.genSecToken();
                     Results = CRESServiceContract.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", lblPath.Text, secToken);
                     if (Results.Count > 0)
@@ -96,23 +94,13 @@ namespace PSSClient
                     }
                     else
                     {
-                        
-                        //Console.WriteLine("          _ ._  _ , _ ._");
-                        //Console.WriteLine("        (_ ' ( `  )_  .__)");
-                        //Console.WriteLine("      ( (  (    )   `)  ) _)");
-                        //Console.WriteLine("     (__ (_   (_ . _) _) ,__)");
-                        //Console.WriteLine("         `~~`\\ ' . /`~~`");
-                        //Console.WriteLine("              ;   ;");
-                        //Console.WriteLine("              /   \\");
-                        //Console.WriteLine("_____________/_ __ \\_____________");
-                    }
-                //}
+                        MessageBox.Show(string.Format("No files found", Results.Count));
 
+                    }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-               // Console.ReadKey();
             }
         }
     }

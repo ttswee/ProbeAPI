@@ -36,6 +36,7 @@
             this.btngetFile = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCaseNo = new System.Windows.Forms.TextBox();
+            this.lblEndPoint = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -79,9 +80,9 @@
             this.lblPath.AutoSize = true;
             this.lblPath.Location = new System.Drawing.Point(33, 124);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(29, 13);
+            this.lblPath.Size = new System.Drawing.Size(32, 13);
             this.lblPath.TabIndex = 4;
-            this.lblPath.Text = "Path";
+            this.lblPath.Text = "Path ";
             // 
             // btngetFile
             // 
@@ -96,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 167);
+            this.label3.Location = new System.Drawing.Point(33, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 6;
@@ -104,16 +105,26 @@
             // 
             // txtCaseNo
             // 
-            this.txtCaseNo.Location = new System.Drawing.Point(85, 167);
+            this.txtCaseNo.Location = new System.Drawing.Point(85, 180);
             this.txtCaseNo.Name = "txtCaseNo";
             this.txtCaseNo.Size = new System.Drawing.Size(135, 20);
             this.txtCaseNo.TabIndex = 7;
+            // 
+            // lblEndPoint
+            // 
+            this.lblEndPoint.AutoSize = true;
+            this.lblEndPoint.Location = new System.Drawing.Point(33, 154);
+            this.lblEndPoint.Name = "lblEndPoint";
+            this.lblEndPoint.Size = new System.Drawing.Size(53, 13);
+            this.lblEndPoint.TabIndex = 8;
+            this.lblEndPoint.Text = "End Point";
             // 
             // InterfaceFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1303, 589);
+            this.Controls.Add(this.lblEndPoint);
             this.Controls.Add(this.txtCaseNo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btngetFile);
@@ -140,5 +151,6 @@
         private System.Windows.Forms.Button btngetFile;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCaseNo;
+        private System.Windows.Forms.Label lblEndPoint;
     }
 }

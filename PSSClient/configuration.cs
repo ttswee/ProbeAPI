@@ -8,13 +8,14 @@ using System.Xml.Serialization;
 using System.IO;
 namespace PSSClient
 {
-    [XmlType("MaintenanceSchedule")]
+    [XmlType("InterfaceFilesLocation")]
     [Serializable]
     public class iFileConfig
     {
         public string serverName { get; set; }
         public string system { get; set; }
         public string path { get; set; }
+        public string apiEndPoint { get; set; }
     }
 
 

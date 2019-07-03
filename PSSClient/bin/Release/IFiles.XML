@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ArrayOfInterfaceFilesLocation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <InterfaceFilesLocation>
+    <serverName>CRESMY MORT</serverName>
+    <system>EBBS</system>
+    <path>e:\ebbs\done</path>
+    <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+  </InterfaceFilesLocation>
+  <InterfaceFilesLocation>
+    <serverName>CRESMY MORT</serverName>
+    <system>ICM</system>
+    <path>e:\ebbs\done</path>
+    <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+  </InterfaceFilesLocation>
+  <InterfaceFilesLocation>
+    <serverName>CRESMY CCPL</serverName>
+    <system>EBBS</system>
+    <path>e:\ebbs\done</path>
+    <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+  </InterfaceFilesLocation>
+  <InterfaceFilesLocation>
+    <serverName>CRESMY CCPL</serverName>
+    <system>CCMS</system>
+    <path>e:\ebbs\done</path>
+    <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+  </InterfaceFilesLocation>
+</ArrayOfInterfaceFilesLocation>
