@@ -91,15 +91,8 @@ namespace CRESapi
         List<interfaceFiles> GetInterFaceFile(string caseNo, string pstatus, string ifPah, string secToken);
     }
 
-    //[ServiceContract]
-    //public interface ICRESAPICallBack
-    //{
-    //    [OperationContract]
-    //    void onRecordGet(DataTable dtResult);
-    //}
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
-    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession)]
     public class CRESapi : ICRESapi
     {
 
@@ -113,7 +106,6 @@ namespace CRESapi
 
                 dt = dalapi.GetProcessAudit(CaseNo);
                 dt.TableName = "ProcessAudit";
-                //OperationContext.Current.GetCallbackChannel<ICRESAPICallBack>().onRecordGet(dt);
                 Console.WriteLine(dt.Rows.Count);
                 return dt;
             }
@@ -134,7 +126,6 @@ namespace CRESapi
 
             dt = dalapi.GetAllRecords();
 
-            //OperationContext.Current.GetCallbackChannel<ICRESAPICallBack>().onRecordGet(dt);
             return dt;
         }
 
@@ -157,22 +148,8 @@ namespace CRESapi
                 
                 if (validateToken(secToken))
                 {
-                    using (EventLog eLog = new EventLog("Application"))
-                    {
-                        eLog.Source = "PerceiverService";
-                        eLog.WriteEntry(string.Format("token ={0}", DecryptToken(secToken).ToString()));
-                    }
                     dirInfo = new DirectoryInfo(ifPath);
-                    //if (ifPath == "EBBS")
-                    //{
                         List<FileInfo> ListToRet = dirInfo.EnumerateFiles().Take(500000).ToList();
-                        //if (File.Exists(fileNames[0]))
-                        //{
-                        //using (EventLog eLog = new EventLog("Application"))
-                        //{
-                        //    eLog.Source = "PerceiverService";
-                        //    eLog.WriteEntry(string.Format("CRES CASE NO : {0}", caseNo));
-                        //}
                         List<FileInfo> found = ListToRet.FindAll(x => x.Name.Contains(caseNo));
                         string[] allstates = pstatus.Split(',');
                         foreach (string istatus in allstates)
@@ -185,17 +162,11 @@ namespace CRESapi
                                 {
                                     foreach (FileInfo fi in foundstatus)
                                     {
-                                        using (EventLog eLog = new EventLog("Application"))
-                                        {
-                                            eLog.Source = "PerceiverService";
-                                            eLog.WriteEntry(string.Format("file name : {0}", fi.FullName));
-                                        }
                                         iFiles.Add(new interfaceFiles { fileName = fi.Name, encFile = encFile(File.ReadAllBytes(fi.FullName),secToken)});
                                     }
                                 }
                             }
                         }
-                    //}
                     return iFiles;
                 }
                 else
@@ -265,13 +236,6 @@ namespace CRESapi
 
         private static byte[] encFile(byte[] uncText, string EncryptKey = "")
         {
-            //string secToken5mins = "";
-            //string macName = Environment.MachineName;
-            //string userID = Environment.UserName;
-            //DateTime forENC = DateTime.Now;
-            //string unEnc = macName + "!" + userID + "!" + forENC;
-            //byte[] uncText = Encoding.Unicode.GetBytes(unEnc);
-            //string EncryptKey = "cresrocks";
             using (Aes encryptor = Aes.Create())
             {
                 Rfc2898DeriveBytes pik = new Rfc2898DeriveBytes(EncryptKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
@@ -285,12 +249,8 @@ namespace CRESapi
                         cs.Close();
                     }
                     return ms.ToArray();
-                    //secToken5mins = Convert.ToBase64String(ms.ToArray());
                 }
             }
-
-
-            //return secToken5mins;
         }
     }
 
