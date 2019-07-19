@@ -1,0 +1,19 @@
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\bin\Debug\DataAccess.dll
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\bin\Debug\DataAccess.pdb
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\obj\Debug\DataAccess.dll
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\obj\Debug\DataAccess.pdb
+C:\CRESMY\branches\cresmy_mort_r1.0_pd\internal_dev\CRES_WIN_7\GA\DataAccess\bin\Debug\DataAccess.dll
+C:\CRESMY\branches\cresmy_mort_r1.0_pd\internal_dev\CRES_WIN_7\GA\DataAccess\bin\Debug\DataAccess.pdb
+C:\CRESMY\branches\cresmy_mort_r1.0_pd\internal_dev\CRES_WIN_7\GA\DataAccess\obj\Debug\DataAccess.dll
+C:\CRESMY\branches\cresmy_mort_r1.0_pd\internal_dev\CRES_WIN_7\GA\DataAccess\obj\Debug\DataAccess.pdb
+C:\CRESMY\branches\cresmy_mort_r1.0_pd\internal_dev\CRES_WIN_7\GA\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\Debug\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\Debug\DataAccess.pdb
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.pdb
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\bin\Debug\DataAccess.dll
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\bin\Debug\DataAccess.pdb
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.dll
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Debug\DataAccess.pdb

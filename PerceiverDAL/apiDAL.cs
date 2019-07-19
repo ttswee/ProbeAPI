@@ -75,4 +75,15 @@ namespace PerceiverDAL
 
     }
 
+    public static class UpdateQueues
+    {
+        public static int UpdateEBBSQueue(string sqlStmt)
+        {
+            var _MSSQl = new MSSQLDB();
+            _MSSQl.QueryText = sqlStmt;
+            return _MSSQl.ExecNonQuery();
+            //return 0;
+        }
+    }
+
 }

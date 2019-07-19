@@ -32,8 +32,7 @@ namespace PerceiverAPI
         private static string CRESapiURI = ConfigurationManager.AppSettings["CRESAPIUri"];
         private static string bindingAdd = ConfigurationManager.AppSettings["BindingIP"];
 
-        private ServiceHost host = null;
-        private ServiceHost _CREShost = null;
+
         internal void TestStartupAndStop(string[] args)
         {
             this.OnStart(args);
@@ -62,6 +61,8 @@ namespace PerceiverAPI
 
         protected override void OnStart(string[] args)
         {
+            ServiceHost host = null;
+            ServiceHost _CREShost = null;
             using (EventLog eLog = new EventLog("Application"))
             {
                 EventLog.Source = "PerceiverService";
@@ -74,8 +75,8 @@ namespace PerceiverAPI
             Thread fileMainJob = new Thread(new ThreadStart(FMThread));
             fileMainJob.Start();
 
-            //Thread Globalapi = new Thread(new ThreadStart(() => InstanciateAPI(host, hostURI.Replace("{0}", bindingAdd), typeof(GlobalAPI.PerceiverAPIs))));
-            //Globalapi.Start();
+            Thread Globalapi = new Thread(new ThreadStart(() => InstanciateAPI(host, hostURI.Replace("{0}", bindingAdd), typeof(GlobalAPI.PerceiverAPIs))));
+            Globalapi.Start();
 
             Thread CREShost = new Thread(new ThreadStart(() => InstanciateAPI(_CREShost, CRESapiURI.Replace("{0}", bindingAdd), typeof(CRESapi.CRESapi))));
             CREShost.Start();
@@ -142,14 +143,14 @@ namespace PerceiverAPI
                 {
                     _host.AddServiceEndpoint(tp, binding, baseaddr);
                 }
-                
+
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
                 smb.HttpGetUrl = new Uri(baseaddr);
                 smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
-               
+
                 _host.Description.Behaviors.Add(smb);
-                
+
                 ServiceDebugBehavior debug = _host.Description.Behaviors.Find<ServiceDebugBehavior>();
 
                 if (debug == null)
@@ -169,12 +170,12 @@ namespace PerceiverAPI
                 using (EventLog eLog = new EventLog("Application"))
                 {
                     EventLog.Source = "PerceiverService";
-                    EventLog.WriteEntry(string.Format("API Listener Type : {0}, state : {1}, address : {2}", ServiceType, _host.State,baseaddr), EventLogEntryType.Information);
+                    EventLog.WriteEntry(string.Format("API Listener Type : {0}, state : {1}, address : {2}", ServiceType, _host.State, baseaddr), EventLogEntryType.Information);
                 }
             }
         }
 
-    
+
 
     }
 }

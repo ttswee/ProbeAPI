@@ -1,0 +1,15 @@
+C:\perceiver\perceivertest\bin\Release\perceivertest.dll
+C:\perceiver\perceivertest\bin\Release\perceivertest.pdb
+C:\perceiver\perceivertest\bin\Release\PerceiverAPIService.exe
+C:\perceiver\perceivertest\bin\Release\FileMaintenance.dll
+C:\perceiver\perceivertest\bin\Release\CRESapi.dll
+C:\perceiver\perceivertest\bin\Release\PerceiverDAL.dll
+C:\perceiver\perceivertest\bin\Release\DataAccess.dll
+C:\perceiver\perceivertest\bin\Release\PerceiverAPIService.pdb
+C:\perceiver\perceivertest\bin\Release\FileMaintenance.pdb
+C:\perceiver\perceivertest\bin\Release\CRESapi.pdb
+C:\perceiver\perceivertest\bin\Release\PerceiverDAL.pdb
+C:\perceiver\perceivertest\bin\Release\DataAccess.pdb
+C:\perceiver\perceivertest\obj\Release\perceivertest.csprojResolveAssemblyReference.cache
+C:\perceiver\perceivertest\obj\Release\perceivertest.dll
+C:\perceiver\perceivertest\obj\Release\perceivertest.pdb

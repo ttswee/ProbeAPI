@@ -1,0 +1,4 @@
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\x86\Release\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\x86\Release\DataAccess.pdb
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\x86\Release\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\x86\Release\DataAccess.pdb

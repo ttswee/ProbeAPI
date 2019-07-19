@@ -36,14 +36,10 @@ namespace CRESapi
             PerceiverDAL.PerceiverDAL.APPDBConnStr = ConfigurationManager.AppSettings["DBConnStr"];
             DataTable CD_PROCESS = new DataTable();
             CD_PROCESS = new ProcessCodeTable().getCD_Process();
-            //List<ProcessCode> pCodes = new List<ProcessCode>();
-
             for (int icnt = 0; icnt < CD_PROCESS.Rows.Count - 1; icnt++)
             {
                 pCodes.Add(new ProcessCode { status = (int)CD_PROCESS.Rows[icnt]["CD_PSTATUS_CODE"], xmlName = CD_PROCESS.Rows[icnt]["CD_PSTATUS_TYPE"].ToString() });
             }
-
-            //return new List<ProcessCode>();
         }
     }
 
@@ -89,6 +85,15 @@ namespace CRESapi
         [OperationContract]
         [WebGet]
         List<interfaceFiles> GetInterFaceFile(string caseNo, string pstatus, string ifPah, string secToken);
+
+
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
+        int UpdateQueues(string sqlStatement, string secToken);
+
+
+
+
     }
 
 
@@ -251,6 +256,18 @@ namespace CRESapi
                     return ms.ToArray();
                 }
             }
+        }
+
+
+        public int UpdateQueues(string sqlStatement, string secToken)
+        {
+            if (validateToken(secToken) == false)
+            {
+                return -1;
+            }
+
+            return PerceiverDAL.UpdateQueues.UpdateEBBSQueue(sqlStatement);
+
         }
     }
 

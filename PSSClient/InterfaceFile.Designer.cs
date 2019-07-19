@@ -37,6 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtCaseNo = new System.Windows.Forms.TextBox();
             this.lblEndPoint = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtStatement = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -119,11 +121,30 @@
             this.lblEndPoint.TabIndex = 8;
             this.lblEndPoint.Text = "End Point";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(707, 81);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 44);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtStatement
+            // 
+            this.txtStatement.Location = new System.Drawing.Point(242, 39);
+            this.txtStatement.Name = "txtStatement";
+            this.txtStatement.Size = new System.Drawing.Size(577, 20);
+            this.txtStatement.TabIndex = 10;
+            // 
             // InterfaceFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1303, 589);
+            this.Controls.Add(this.txtStatement);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblEndPoint);
             this.Controls.Add(this.txtCaseNo);
             this.Controls.Add(this.label3);
@@ -152,5 +173,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCaseNo;
         private System.Windows.Forms.Label lblEndPoint;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtStatement;
     }
 }

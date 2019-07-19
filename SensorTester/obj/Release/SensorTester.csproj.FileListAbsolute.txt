@@ -13,7 +13,6 @@ C:\perceiver\SensorTester\obj\Release\SensorTester.pdb
 C:\perceiver\SensorTester\bin\Release\CRESapi.dll
 C:\perceiver\SensorTester\bin\Release\CRESapi.pdb
 C:\perceiver\SensorTester\bin\Release\FileMaintenance.dll
-C:\perceiver\SensorTester\bin\Release\PerceiverAPIService.exe
 C:\perceiver\SensorTester\bin\Release\FileMaintenance.pdb
 C:\perceiver\SensorTester\bin\Release\PerceiverAPIService.pdb
 C:\perceiver\SensorTester\bin\Release\PerceiverDAL.dll

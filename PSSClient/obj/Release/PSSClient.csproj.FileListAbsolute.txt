@@ -13,3 +13,4 @@ C:\perceiver\PSSClient\obj\Release\PSSClient.Properties.Resources.resources
 C:\perceiver\PSSClient\obj\Release\PSSClient.csproj.GenerateResource.Cache
 C:\perceiver\PSSClient\obj\Release\PSSClient.exe
 C:\perceiver\PSSClient\obj\Release\PSSClient.pdb
+C:\perceiver\PSSClient\obj\Release\PSSClient.mymort.resources

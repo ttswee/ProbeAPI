@@ -16,6 +16,7 @@ namespace PSSClient
         public string system { get; set; }
         public string path { get; set; }
         public string apiEndPoint { get; set; }
+        public string serverIP { get; set; }
     }
 
 

@@ -22,10 +22,10 @@ namespace PSSClient
         private void InterfaceFile_Load(object sender, EventArgs e)
         {
             
-            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "EBBS", path = "e:\\ebbs\\done",apiEndPoint="http://10.112.179.196:5880/cresapi.svc" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "ICM", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "EBBS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
-            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "CCMS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "EBBS", path = "e:\\ebbs\\done",apiEndPoint="http://10.112.179.196:5880/cresapi.svc",serverIP="10.112.179.196" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY MORT", system = "ICM", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc", serverIP = "10.112.179.196" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "EBBS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc", serverIP = "10.112.179.196" });
+            ifileList.Add(new iFileConfig { serverName = "CRESMY CCPL", system = "CCMS", path = "e:\\ebbs\\done", apiEndPoint = "http://10.112.179.196:5880/cresapi.svc", serverIP = "10.112.179.196" });
 
             var path = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "IFiles.XML");
             System.Xml.Serialization.XmlSerializer writer =
@@ -55,8 +55,8 @@ namespace PSSClient
         private void cmbSystem_SelectedIndexChanged(object sender, EventArgs e)
         {
             var _path = ifileList.Where(x => x.serverName == cmbServer.SelectedItem.ToString() && x.system == cmbSystem.SelectedItem.ToString()).Select(x => new {x.path,x.apiEndPoint}).ToList();
-            this.lblPath.Text = string.Format("Path : {0}",_path[0].path);
-            this.lblEndPoint.Text = string.Format("End point : {0}", _path[0].apiEndPoint); 
+            this.lblPath.Text = string.Format("{0}",_path[0].path);
+            this.lblEndPoint.Text = string.Format("{0}", _path[0].apiEndPoint); 
         }
 
         private void btngetFile_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace PSSClient
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("No files found", Results.Count));
+                        MessageBox.Show("No files found");
 
                     }
             }
@@ -103,5 +103,22 @@ namespace PSSClient
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BasicHttpBinding CRESbinding = new BasicHttpBinding();
+            CRESbinding.Security.Mode = BasicHttpSecurityMode.None;
+            CRESbinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+            CRESbinding.MaxReceivedMessageSize = 2000000;
+            EndpointAddress CRESaddress = new EndpointAddress(this.lblEndPoint.Text);
+            ChannelFactory<CRESapi.ICRESapi> CRESApiFac = new ChannelFactory<CRESapi.ICRESapi>(CRESbinding, CRESaddress);
+            var CRESServiceContract = CRESApiFac.CreateChannel();
+
+            int RowAffected = 0;
+            RowAffected = CRESServiceContract.UpdateQueues(txtStatement.Text, ACLs.genSecToken());
+            MessageBox.Show(string.Format("Total rows affected : {0}", RowAffected.ToString()));
+        }
+
+
     }
 }

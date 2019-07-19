@@ -13,6 +13,13 @@ using System.Xml.Serialization;
 using System.Data;
 using System.Configuration;
 using PerceiverAPI;
+using System.ServiceProcess;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Web;
+using System.Reflection;
+using System.Diagnostics;
+using System.ComponentModel;
+using System.Threading;
 namespace GlobalAPI
 {
     public class DriveSpaces
@@ -28,6 +35,24 @@ namespace GlobalAPI
         public DateTime recordingdate {get;set;}
 
     }
+    
+    public class WindowsServices
+    {
+        [Description("Service Name")]
+        public string serviceName {get;set;}
+        [Description("Service Display Name")]
+        public string serviceDisplayName {get;set;}
+        [Description("Service Status")]
+        public ServiceControllerStatus serviceStatus {get;set;}
+    }
+
+    public class WindowsProcesses
+    {
+        public string processName {get;set;}
+        public bool processResponding { get; set; }
+        public Int16 processThread { get; set; }
+        public string processCommandLine { get; set; }
+    }
 
     [XmlType("MaintenanceSchedule")]
     [Serializable, DataContract]
@@ -40,46 +65,53 @@ namespace GlobalAPI
     [ServiceContract]
     public interface ISpaceProbe
     {
-
-        [OperationContract]
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
         List<DriveSpaces> GetDriveInfo();
-
     }
 
     [ServiceContract]
     public interface IFolderMaintenance
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
         List<FileInfo> GetFolderInfo();
-
-        [OperationContract]
-        byte[] GetFile(string FileName);
-
-
     }
 
     [ServiceContract]
     public interface IJobMaintenance
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = false)]
+        [WebGet]
         List<MaintSch> GetJobList();
     }
 
+    [ServiceContract]
+    public interface IServerAdministration
+    {
+        [OperationContract(IsOneWay = false)]
+        List<WindowsServices> GetServiceState();
 
-    [ServiceBehavior(InstanceContextMode=InstanceContextMode.PerSession)]
-    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance
+        [OperationContract(IsOneWay = false)]
+        List<WindowsProcesses> GetProcesses();
+
+        [OperationContract(IsOneWay = false)]
+        List<Process> GetProcessesComplete();
+
+        [OperationContract(IsOneWay = false)]
+        bool PostRestartService(string ServiceName);
+    }
+
+
+    [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
+    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance,IServerAdministration
     {
         public List<DriveSpaces> GetDriveInfo()
         {
             try
             {
-                //if (!AccessAllowed(ServiceSecurityContext.Current.WindowsIdentity.Name))
-                //{
-                //    throw new Exception("Unauthorized");
-                //}
 
                 var dSpace = new List<DriveSpaces>();
-                //dSpace.Add(new DriveSpaces { driveLetter = ServiceSecurityContext.Anonymous.WindowsIdentity.User.ToString(), freeSpace = 0, TotalSpace = 0 });
                 foreach (DriveInfo drive in DriveInfo.GetDrives())
                 {
                     if (drive.IsReady)
@@ -119,23 +151,61 @@ namespace GlobalAPI
             return new List<FileInfo>();
         }
 
-        public byte[] GetFile(string FileName)
+
+        public List<WindowsServices> GetServiceState()
         {
-            byte[] FileNotExit=null;
-            
-            if (File.Exists(FileName))
-                return File.ReadAllBytes(FileName);
-            
-            return FileNotExit;
+            List<WindowsServices> sList = new List<WindowsServices>();
+            ServiceController[] services = ServiceController.GetServices();
+            foreach (ServiceController serv in services)
+            {
+                sList.Add(new WindowsServices { serviceName = serv.ServiceName, serviceDisplayName = serv.DisplayName, serviceStatus = serv.Status });
+            }
+            return sList;
 
         }
 
-        private bool AccessAllowed(string userName)
+
+
+
+        public List<WindowsProcesses> GetProcesses()
         {
+            List<WindowsProcesses> pList = new List<WindowsProcesses>();
+            Process[] CurrentProcesses = Process.GetProcesses();
+            foreach (Process pro in CurrentProcesses)
+            {
+                try
+                {
+                    pList.Add(new WindowsProcesses { processName = pro.ProcessName, processResponding = pro.Responding, processThread = (Int16)pro.Threads.Count, processCommandLine = pro.MainModule.FileName });
+                }
+                catch { }
+            }
+            return pList;
+        }
+
+        public List<Process> GetProcessesComplete()
+        {
+            
+            //List<WindowsProcesses> pList = new List<WindowsProcesses>();
+            //Process[] CurrentProcesses = Process.GetProcesses();
+            //foreach (Process pro in CurrentProcesses)
+            //{
+            //    pList.Add(new WindowsProcesses { processName = pro.ProcessName, processResponding = pro.Responding, processThread = (Int16)pro.Threads.Count });
+            //}
+            return Process.GetProcesses().ToList();
+        }
+
+
+
+        public bool PostRestartService(string ServiceName)
+        {
+            ServiceController sc = new ServiceController(ServiceName);
+            sc.Stop();
+            sc.WaitForStatus(ServiceControllerStatus.Stopped);
+            sc.Start();
+            sc.WaitForStatus(ServiceControllerStatus.Running);
             return true;
+            
         }
-
-        
     }
 
 

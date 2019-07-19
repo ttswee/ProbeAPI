@@ -5,23 +5,27 @@
     <system>EBBS</system>
     <path>e:\ebbs\done</path>
     <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+    <serverIP>10.112.179.196</serverIP>
   </InterfaceFilesLocation>
   <InterfaceFilesLocation>
     <serverName>CRESMY MORT</serverName>
     <system>ICM</system>
     <path>e:\ebbs\done</path>
     <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+    <serverIP>10.112.179.196</serverIP>
   </InterfaceFilesLocation>
   <InterfaceFilesLocation>
     <serverName>CRESMY CCPL</serverName>
     <system>EBBS</system>
     <path>e:\ebbs\done</path>
     <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+    <serverIP>10.112.179.196</serverIP>
   </InterfaceFilesLocation>
   <InterfaceFilesLocation>
     <serverName>CRESMY CCPL</serverName>
     <system>CCMS</system>
     <path>e:\ebbs\done</path>
     <apiEndPoint>http://10.112.179.196:5880/cresapi.svc</apiEndPoint>
+    <serverIP>10.112.179.196</serverIP>
   </InterfaceFilesLocation>
 </ArrayOfInterfaceFilesLocation>

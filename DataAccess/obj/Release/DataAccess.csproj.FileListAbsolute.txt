@@ -1,0 +1,20 @@
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\bin\Release\DataAccess.dll
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\bin\Release\DataAccess.pdb
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\obj\Release\DataAccess.dll
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\obj\Release\DataAccess.pdb
+C:\Visual Studio 2012\Projects\EWFE\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\Release\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\bin\Release\DataAccess.pdb
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.dll
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.pdb
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\bin\Release\DataAccess.dll
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\bin\Release\DataAccess.pdb
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.dll
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.pdb
+C:\cresmy_mort_r3.0_dev\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\cresmy_mort_r1.0_pd\internal_dev\CRES\PSS\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\perceiver\DataAccess\bin\Release\DataAccess.dll
+C:\perceiver\DataAccess\bin\Release\DataAccess.pdb
+C:\perceiver\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\perceiver\DataAccess\obj\Release\DataAccess.dll
+C:\perceiver\DataAccess\obj\Release\DataAccess.pdb

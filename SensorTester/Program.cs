@@ -8,48 +8,57 @@ using System.IO;
 using System.Data;
 using System.Configuration;
 using System.Security.Cryptography;
+using System.Diagnostics;
+using System.Management;
 namespace SensorTester
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //BasicHttpBinding binding = new BasicHttpBinding();
-            //binding.Security.Mode = BasicHttpSecurityMode.None;
-            //binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
-
-            //EndpointAddress address = new EndpointAddress(string.Format(ConfigurationManager.AppSettings["globalapiuri"], ConfigurationManager.AppSettings["serverIP"]));
-            //ChannelFactory<GlobalAPI.ISpaceProbe> SpaceChannel = new ChannelFactory<GlobalAPI.ISpaceProbe>(binding, address);
-            //GlobalAPI.ISpaceProbe _SpaceChannel = SpaceChannel.CreateChannel();
-
-
-            //var dSpace = _SpaceChannel.GetDriveInfo();
-            //for (int i = 0; i < dSpace.Count(); i++)
-            //{
-            //    Console.WriteLine("Drive {0} : Used Space{1} : Total Space {2}", dSpace[i].driveLetter, dSpace[i].freeSpace.ToString(), dSpace[i].TotalSpace.ToString());
-
-            //}
-            //Console.WriteLine(dSpace);
-
-            ////var psFile = new PerceiverAPIs.FolderMaintenanceClient(binding, address);
-            ////psFile.ClientCredentials.UserName.UserName = "test";
-            ////var fileBytes = psFile.GetFile("c:\\APPLCRES\\TDE\\CRES2EFORM_002.TXT");
-            ////if (fileBytes != null && fileBytes.Length > 0)
-            ////    File.WriteAllBytes("c:\\swee\\fromserver3.txt", fileBytes);
-
-
-            //ChannelFactory<GlobalAPI.IJobMaintenance> JobChannel = new ChannelFactory<GlobalAPI.IJobMaintenance>(binding, address);
-            //GlobalAPI.IJobMaintenance _Jobchannel = JobChannel.CreateChannel();
-            //var JobList = _Jobchannel.GetJobList();
-            //foreach (FileMaintenance.MaintSch J in JobList)
-            //{
-            //    Console.WriteLine("Job Name : {0}", J.JobName);
-            //    Console.WriteLine("Job Type : {0}", J.JobType);
-            //    Console.WriteLine("Job Folder Name : {0}", J.FolderName);
-            //}
-
             try
             {
+                
+
+                BasicHttpBinding binding = new BasicHttpBinding();
+                binding.Security.Mode = BasicHttpSecurityMode.None;
+                binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+
+                List<GlobalAPI.WindowsServices> serverService = new List<GlobalAPI.WindowsServices>();
+
+                EndpointAddress address = new EndpointAddress(string.Format(ConfigurationManager.AppSettings["globalapiuri"], ConfigurationManager.AppSettings["serverIP"]));
+                ChannelFactory<GlobalAPI.IServerAdministration> WServices = new ChannelFactory<GlobalAPI.IServerAdministration>(binding, address);
+                var gChannel = WServices.CreateChannel();
+                var r = gChannel.GetServiceState();
+                foreach (GlobalAPI.WindowsServices svc in r)
+                {
+                    Console.WriteLine("Service : {0} , Display Name : {1}, Status : {2}", svc.serviceName, svc.serviceDisplayName, svc.serviceStatus);
+                }
+
+                ChannelFactory<GlobalAPI.ISpaceProbe> SpaceChannel = new ChannelFactory<GlobalAPI.ISpaceProbe>(binding, address);
+                GlobalAPI.ISpaceProbe _SpaceChannel = SpaceChannel.CreateChannel();
+
+
+                var dSpace = _SpaceChannel.GetDriveInfo();
+                for (int i = 0; i < dSpace.Count(); i++)
+                {
+                    Console.WriteLine("Drive {0} : Used Space{1} : Total Space {2}", dSpace[i].driveLetter, dSpace[i].freeSpace.ToString(), dSpace[i].TotalSpace.ToString());
+
+                }
+                Console.WriteLine(dSpace);
+
+
+                ChannelFactory<GlobalAPI.IJobMaintenance> JobChannel = new ChannelFactory<GlobalAPI.IJobMaintenance>(binding, address);
+                GlobalAPI.IJobMaintenance _Jobchannel = JobChannel.CreateChannel();
+                var JobList = _Jobchannel.GetJobList();
+                foreach (FileMaintenance.MaintSch J in JobList)
+                {
+                    Console.WriteLine("Job Name : {0}", J.JobName);
+                    Console.WriteLine("Job Type : {0}", J.JobType);
+                    Console.WriteLine("Job Folder Name : {0}", J.FolderName);
+                }
+
+
                 BasicHttpBinding CRESbinding = new BasicHttpBinding();
                 CRESbinding.Security.Mode = BasicHttpSecurityMode.None;
                 CRESbinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
