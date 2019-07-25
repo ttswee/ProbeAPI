@@ -22,6 +22,7 @@ using System.ComponentModel;
 using System.Threading;
 namespace GlobalAPI
 {
+    public enum serviceAction { ChangeState = 1, Restart = 2 }
     public class DriveSpaces
     {
         public string driveLetter { get; set; }
@@ -99,13 +100,15 @@ namespace GlobalAPI
         List<Process> GetProcessesComplete();
 
         [OperationContract(IsOneWay = false)]
-        bool PostRestartService(string ServiceName);
+        bool PostRestartService(string ServiceName,serviceAction act);
     }
 
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
     public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance,IServerAdministration
     {
+       
+
         public List<DriveSpaces> GetDriveInfo()
         {
             try
@@ -154,6 +157,7 @@ namespace GlobalAPI
 
         public List<WindowsServices> GetServiceState()
         {
+
             List<WindowsServices> sList = new List<WindowsServices>();
             ServiceController[] services = ServiceController.GetServices();
             foreach (ServiceController serv in services)
@@ -196,15 +200,46 @@ namespace GlobalAPI
 
 
 
-        public bool PostRestartService(string ServiceName)
+        public bool PostRestartService(string ServiceName, serviceAction act)
         {
+
             ServiceController sc = new ServiceController(ServiceName);
-            sc.Stop();
-            sc.WaitForStatus(ServiceControllerStatus.Stopped);
-            sc.Start();
-            sc.WaitForStatus(ServiceControllerStatus.Running);
+            if (act == serviceAction.Restart)
+            {
+                if (sc.Status == ServiceControllerStatus.Running)
+                {
+                    sc.Stop();
+                    sc.WaitForStatus(ServiceControllerStatus.Stopped);
+                    sc.Start();
+                    //sc.WaitForStatus(ServiceControllerStatus.Running);
+                    return true;
+                }
+                else
+                    if (sc.Status == ServiceControllerStatus.Stopped)
+                    {
+                        sc.Start();
+                        //sc.WaitForStatus(ServiceControllerStatus.Running);
+                        return true;
+                    }
+                return false;
+            }
+            if (act == serviceAction.ChangeState)
+            {
+                if (sc.Status == ServiceControllerStatus.Stopped)
+                {
+                    sc.Start();
+                    //sc.WaitForStatus(ServiceControllerStatus.Running);
+                    return true;
+                }
+                else
+                    if (sc.Status == ServiceControllerStatus.Running)
+                    {
+                        sc.Stop();
+                        //sc.WaitForStatus(ServiceControllerStatus.Running);
+                        return true;
+                    }
+            }
             return true;
-            
         }
     }
 

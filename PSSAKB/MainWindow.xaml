@@ -10,6 +10,7 @@
                           Rect="0,0,16,16" />
             </DrawingImage.Drawing>
         </DrawingImage>
+
     </Window.Resources>
     <Grid HorizontalAlignment="Stretch" >
         <Grid.ColumnDefinitions>
@@ -29,19 +30,26 @@
             <Label Content="Server"/>
             <ComboBox x:Name="cmbServers" Width="355" />
         </StackPanel>
-        <Expander Background="Aqua" Header="Services" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0"  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"   Name="ServiceBar" >
-            <DockPanel HorizontalAlignment="Stretch" Margin="0,0,0,0"  Height="Auto" VerticalAlignment="Top">
+        <Expander Header="Services"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0"  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"   Name="ServiceBar" >
+            <DockPanel HorizontalAlignment="Stretch" Margin="0,0,0,0"  Height="Auto" VerticalAlignment="Top" Background="Beige">
                 <DataGrid x:Name="Services" ItemsSource="{Binding servicestatus.allServices}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="917" RenderTransformOrigin="0.69,0.549" Height="603" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding serviceName}" Header="Service Name"/>
                     
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Restart" Click="RestartService"></Button>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Restart" Command="{Binding Path=DataContext.restartServ,RelativeSource= {RelativeSource FindAncestor,  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Stat/Stop" Command="{Binding Path=DataContext.startstopService, RelativeSource= {RelativeSource FindAncestor,  AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
@@ -62,17 +70,19 @@
                 
             </DockPanel>
         </Expander>
-        <Expander   Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0"  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"   Name="FileSearchBar" >
-            <Expander.Header>
+        <Expander  Header="Extract XML File" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0"  HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"   Name="FileSearchBar" >
+            <!--<Expander.Header>
                 <Border Background="Aquamarine" HorizontalAlignment="Stretch">
                     <TextBlock  Text="File Extract" 
                           HorizontalAlignment="Stretch" />
                 </Border>
-            </Expander.Header>
+            </Expander.Header>-->
             <DockPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -81,10 +91,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="System" Grid.Row="0" Grid.Column="0"></Label>
-                    <ComboBox Name="cmbSystems" Grid.Row="0" Grid.Column="1"></ComboBox>
+                    <ComboBox Name="cmbSystems" Grid.Row="0" Grid.Column="1" ItemsSource="{Binding xmlSysList.sysList}"></ComboBox>
                     <Label Content="Case Number" Grid.Row="1" Grid.Column="0"></Label>
-                    <TextBox Name="txtCaseNo" Grid.Row="1" Grid.Column="1"/>
-                    <Button Name="btnGetFile" Content="Get File" Grid.Column="1" Grid.Row="2" Width="100" HorizontalAlignment="Left" Command="{Binding Path=fileGetCommand}" CommandParameter="{Binding Text,ElementName=txtCaseNo}" ></Button>
+                    <TextBox Name="txtCaseNo" Grid.Row="1" Grid.Column="1" Text="{Binding Path=nCaseNo.nCaseNo}"/>
+                    <Label Content="Destination Folder" Grid.Row="1" Grid.Column="2"></Label>
+                    <TextBox Name="txtDestFolder" Grid.Row="1" Grid.Column="3" Text="{Binding Path=nCaseNo.sDestFolder}"/>
+                    <Button Name="btnGetFile" Content="Get File" Grid.Column="1" Grid.Row="2" Width="100" HorizontalAlignment="Left" Command="{Binding Path=getFilePressed}"  ></Button>
                 </Grid>
                 
             </DockPanel>
@@ -115,7 +127,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Content="EBBS" Grid.Column="0" Click="EBBSQueue"/>
+                        <Button Content="EBBS" Grid.Column="0"/>
                         <Button Content="NBSM" Grid.Column="1"/>
                         <Button Content="ICDD" Grid.Column="2"/>
                     </Grid>
@@ -139,8 +151,8 @@
                     <Label Content="Case Number" Grid.Row="2"></Label>
                     <TextBox Name="txtSQLCase" Grid.Row="2" Grid.Column="1"></TextBox>
                     <Label Content="SQL Statement" Grid.Row="3" Grid.Column="0"></Label>
-                    <TextBox Name="txtSqlStmt"  AutoWordSelection="True" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="2"  HorizontalAlignment="Stretch"  HorizontalContentAlignment="Stretch"></TextBox>
-                    <Button Content="Execute" Click="ExecuteSQL" Grid.Column="0" Grid.Row="4" Width="100" HorizontalAlignment="Left"></Button>
+                    <TextBox Name="txtSqlStmt"  AutoWordSelection="True" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="2"  HorizontalAlignment="Stretch"  HorizontalContentAlignment="Stretch" Text="{Binding Path=sqlToExecute.sSqlStatement}"></TextBox>
+                    <Button Content="Execute" Command="{Binding Path=ExecuteSQLPressed}" Grid.Column="0" Grid.Row="4" Width="100" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top"></Button>
                 </Grid>
             </DockPanel>
         </Expander>

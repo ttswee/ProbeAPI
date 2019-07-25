@@ -24,3 +24,4 @@ C:\perceiver\PSSAKB\bin\Release\DataAccess.pdb
 C:\perceiver\PSSAKB\obj\Release\PSSAKB.exe
 C:\perceiver\PSSAKB\obj\Release\PSSAKB.pdb
 C:\perceiver\PSSAKB\obj\Release\Images.baml
+C:\perceiver\PSSAKB\obj\Release\PSSAKB.Controls.resources
