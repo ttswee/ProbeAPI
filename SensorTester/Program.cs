@@ -80,7 +80,7 @@ namespace SensorTester
                         break;
                     }
                     string secToken = genSecToken();
-                    Results = CRESServiceContract.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", "EBBS", secToken);
+                    Results = CRESServiceContract.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", "e:\\ebbs\\done", secToken);
                     if (Results.Count > 0)
                     {
                         string destfolder = "c:\\xml\\";

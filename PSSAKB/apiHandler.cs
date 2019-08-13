@@ -16,8 +16,10 @@ namespace PSSAKB
         private static EndpointAddress address;
         private static EndpointAddress cresapiaddr;
         public static ChannelFactory<GlobalAPI.IServerAdministration> WServices;
+        public static ChannelFactory<GlobalAPI.IFileReader> WLogHandler;
         public static ChannelFactory<CRESapi.ICRESapi> WServicesCRES;
         public static GlobalAPI.IServerAdministration gChannel;
+        public static GlobalAPI.IFileReader gFileReader;
         public static CRESapi.ICRESapi  gCRESChannel;
         public static void setEndPoint(string endPointAddr)
         {
@@ -26,10 +28,12 @@ namespace PSSAKB
             binding.OpenTimeout = new TimeSpan(0, 10, 0);
             binding.CloseTimeout = new TimeSpan(0, 10, 0);
             binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+            binding.MaxReceivedMessageSize = 20000000;
             address = new EndpointAddress(string.Format(ConfigurationManager.AppSettings["globalapiuri"], ConfigurationManager.AppSettings["serverIP"]));
             WServices = new ChannelFactory<GlobalAPI.IServerAdministration>(binding, address);
+            WLogHandler = new ChannelFactory<GlobalAPI.IFileReader>(binding, address);
             gChannel = WServices.CreateChannel();
-
+            gFileReader = WLogHandler.CreateChannel();
             cresbinding.Security.Mode = BasicHttpSecurityMode.None;
             cresbinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
             cresbinding.ReceiveTimeout = new TimeSpan(0, 10, 0);

@@ -15,6 +15,7 @@ using System.IO;
 using System.Diagnostics;
 using PerceiverDAL;
 using System.Security.Cryptography;
+using System.Collections.ObjectModel;
 namespace CRESapi
 {
     public class ProcessLogs
@@ -24,11 +25,18 @@ namespace CRESapi
         private bool status { get; set; }
     }
 
+    public class fileSendLogs
+    {
+        private string logfilename { get; set; }
+        private string senddate{get;set;}
+        private string sendstatus {get;set;}
+        private string message {get;set;}
+    }
+    
     public class ProcessCode
     {
         public int status { get; set; }
         public string xmlName { get; set; }
-
         public static List<ProcessCode> pCodes = new List<ProcessCode>();
 
         public static void setProcessCodes()
@@ -75,23 +83,20 @@ namespace CRESapi
     public interface ICRESapi
     {
         [OperationContract(IsOneWay = false)]
-        [WebGet]
         DataTable GetProcessAudit(string caseNo);
 
         [OperationContract(IsOneWay = false)]
-        [WebGet]
         DataTable GetGARecords();
 
         [OperationContract]
-        [WebGet]
         List<interfaceFiles> GetInterFaceFile(string caseNo, string pstatus, string ifPah, string secToken);
 
 
         [OperationContract(IsOneWay = false)]
-        [WebGet]
         int UpdateQueues(string sqlStatement, string secToken);
 
-
+        [OperationContract(IsOneWay = false)]
+        List<fileSendLogs> GetSendLogs(DateTime StartDate, int NoOfDays);
 
 
     }
@@ -269,6 +274,88 @@ namespace CRESapi
             return PerceiverDAL.UpdateQueues.UpdateEBBSQueue(sqlStatement);
 
         }
+
+
+
+
+        public List<fileSendLogs> GetSendLogs(DateTime StartDate, int NoOfDays)
+        {
+            string pdwpath = ConfigurationManager.AppSettings["PDWLogPath"];
+            string ifrs = ConfigurationManager.AppSettings["IFRSLogPath"];
+
+            return new List<fileSendLogs>();
+        }
+
+
+        private static void CheckPDWFiles(string filename, DateTime checkdate)
+        {
+            if (!File.Exists(filename))
+                return;
+            bool bErr = false;
+            int logstart = 0;
+            var fileContent = File.ReadLines(filename, Encoding.UTF8).ToArray();
+            DateTime foundate = DateTime.Today;
+            bool isdate = false;
+            string dateline = "";
+            for (int ln = 0; ln <= fileContent.Count() - 1; ln++)
+            {
+                dateline = "";
+                if (fileContent[ln].ToString() == "\"*** Start ***\" ")
+                {
+                    ++ln;
+                    if (fileContent[ln].Length > 8)
+                        dateline = new string(fileContent[ln].Reverse().Take(10).Reverse().ToArray());
+                    isdate = DateTime.TryParse(dateline, out foundate);
+                    if (isdate && checkdate == foundate)
+                    {
+                        logstart = ln;
+                        bErr = false;
+                        for (int finderror = logstart; logstart < fileContent.Count(); logstart++)
+                        {
+                            if (fileContent[logstart].ToString() == "\"*** Start ***\" ")
+                                break;
+                            if (fileContent[logstart].ToString() == "All channels closed. Disconnecting")
+                                break;
+
+                            if (fileContent[logstart].Contains("error"))
+                            {
+                                bErr = true;
+                                break;
+                            }
+                        }
+                        if (bErr)
+                        {
+                            Console.WriteLine(filename);
+                            Console.WriteLine("Send error detected for date : {0}", foundate.ToString("dd/MM/yyyy"));
+                            Console.WriteLine("in file :{0} ", fileContent[logstart]);
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private static void CheckIFRS(string ifrs)
+        {
+            string filedatepart = "EDM_IFRS_LOG_" + DateTime.Today.Month.ToString("00") + DateTime.Today.Day.ToString("00") + DateTime.Today.Year.ToString() + ".txt";
+            //string filedatepart = "EDM_IFRS_LOG_04072019.txt";
+            string filename = Path.Combine(ifrs, filedatepart);
+            if (File.Exists(filename))
+            {
+                var fileContent = File.ReadLines(filename).ToArray();
+                for (int i = 0; i < fileContent.Count(); i++)
+                {
+                    if (fileContent[i].Contains("Reason Code"))
+                    {
+                        Console.WriteLine("IFRS Failed");
+                        break;
+                    }
+                }
+            }
+        }
+
+
     }
 
 }

@@ -9,9 +9,11 @@ using System.IO;
 using acl;
 using System.ServiceProcess;
 using GlobalAPI;
+using System.Collections.ObjectModel;
+
 namespace PSSAKB
 {
-    sealed class mainViewModel : INotifyPropertyChanged
+    sealed class mainViewModel //: INotifyPropertyChanged
     {
 
 
@@ -42,25 +44,31 @@ namespace PSSAKB
             }
         }
 
-        private CaseNo _nCaseNo;
-        public CaseNo nCaseNo
+        private XMLCaseNo _CaseNo;
+        public XMLCaseNo CaseNo
         {
-            get { return _nCaseNo; }
+            get { return _CaseNo; }
             set
             {
-                if (nCaseNo != value)
+                if (CaseNo != value)
                 {
-                    _nCaseNo = value;
+                    _CaseNo = value;
+                }
+            }
+        }
+        private logContent _lContent;
+        public logContent lContent { 
+            get {return _lContent;}
+            set
+            {
+                if (lContent != value)
+                {
+                    _lContent = value;
                 }
             }
         }
 
-        public string sXMLCase{
-            get { return nCaseNo.nCaseNo; }
-            set{
-                nCaseNo.nCaseNo = value;
-            }
-        }
+ 
 
         private sqlStatmentHandler _sSqlStatement;
         public sqlStatmentHandler sqlToExecute
@@ -95,37 +103,64 @@ namespace PSSAKB
         {
             processstatus = new winProcesses { allProcesses = apiHandler.gChannel.GetProcesses() };
             servicestatus = new winServices { allServices = apiHandler.gChannel.GetServiceState() };
-            nCaseNo = new CaseNo{nCaseNo = "333",sDestFolder="c:\\xml"};
+            lContent = new logContent();
+            //lContent = new logContent { fList = apiHandler.gFileReader.GetFileList("c:\\ga") };
+            //lContent = new logContent { fList = new List<FileInfo>() };
+            CaseNo = new XMLCaseNo { CaseNo = "1234", DestFolder = "c:\\xml" , TotalFiles="Waiting"};
+            
             sqlToExecute = new sqlStatmentHandler();
+            
             xmlSysList = new enqXML { sysList = new List<string>() { "EBBS", "ICDD", "ICM" } };
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChange(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+       
 
         private ICommand fileGet;
         private ICommand executeSQL;
-        private ICommand startStopProcess;
+        private ICommand GetFileList;
+        private ICommand changeServiceState;
+        public ICommand changeServState
+    {
+        get
+        {
+            if (this.changeServiceState == null)
+            {
+                this.changeServiceState = new RelayCommand(startstopService, CanTrigger);
+            }
+            return changeServiceState;
+        }
+    }
+
+
         private ICommand startStopService;
         public ICommand restartServ
         {
             get
             {
-                if (this.startStopProcess == null)
+                if (this.startStopService == null)
                 {
-                    this.startStopProcess = new RelayCommand(RestartService, CanTrigger);
+                    this.startStopService = new RelayCommand(RestartService, CanTrigger);
                 }
-                return startStopProcess;
+                return startStopService;
             }
             
+        }
+
+
+        private ICommand GetFileContents;
+        public ICommand LogLines
+        {
+            get
+            {
+                if (this.GetFileContents == null)
+                {
+                    this.GetFileContents = new RelayCommand(getLogs, CanTrigger);
+                }
+                return GetFileContents;
+            }
+
         }
 
         public bool CanTrigger(object obj)
@@ -141,6 +176,18 @@ namespace PSSAKB
                     this.fileGet = new RelayCommand(fileGetExecute,CanTrigger);
                 }
                 return this.fileGet;
+            }
+        }
+
+        public ICommand getFilesList
+        {
+            get
+            {
+                if (this.GetFileList == null)
+                {
+                    this.GetFileList = new RelayCommand(FileListGetExec, CanTrigger);
+                }
+                return this.GetFileList;
             }
         }
 
@@ -162,6 +209,7 @@ namespace PSSAKB
             int totalrecord = 0;
             string secToken = acl.ACLs.genSecToken();
             totalrecord = apiHandler.gCRESChannel.UpdateQueues(sqlToExecute.sSqlStatement , secToken);
+            sqlToExecute.totalRecords = string.Format("Total updated records : {0}", totalrecord);
             //MessageBox.Show(string.Format("Total records affected : {0}",totalrecord));
         }
 
@@ -170,14 +218,8 @@ namespace PSSAKB
             //todo : call the api to restart the service
 
             var process = (GlobalAPI.WindowsServices) sender;
-//            if (process.serviceStatus == ServiceControllerStatus.Running)
-//           {
-                bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.Restart);
-//            }
-            //else
-            //{
-
-            //}
+                bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.ChangeState);
+                processstatus = new winProcesses { allProcesses = apiHandler.gChannel.GetProcesses() };
         }
 
         private void RestartService(object sender)
@@ -185,26 +227,44 @@ namespace PSSAKB
             //todo : call the api to restart the service
 
             var process = (GlobalAPI.WindowsServices)sender;
-            //if (process.serviceStatus == ServiceControllerStatus.Running)
-            //{
-                bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.ChangeState);
-            //}
+                bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.Restart);
             
         }
 
+        private void FileListGetExec(object obj)
+        {
+            //var results = apiHandler.gFileReader.GetFileList("c:\\ga");
+            //lContent.fList = new List<FileInfo>();
+            lContent.fList = apiHandler.gFileReader.GetFileList("e:\\ebbs\\log");
+            
+            //lContent.fList = results;
+        }
+
+        private void getLogs(object sender)
+        {
+            var logc = (FileInfo)sender;
+            var contents = apiHandler.gFileReader.GetLogFile(logc.FullName, lContent.linesToRead , ReadDirection.Forward);
+            lContent.LogFileLines = "";
+            foreach (string cnt in contents)
+            {
+                lContent.LogFileLines += cnt + Environment.NewLine;
+            }
+
+        }
 
         private void fileGetExecute(object obj)
         {
             try
             {
 
-                string caseno = nCaseNo.nCaseNo;// parameter.ToString();
+                string caseno = CaseNo.CaseNo;// parameter.ToString();
                 List<CRESapi.interfaceFiles> Results = new List<CRESapi.interfaceFiles>();
                 string secToken = acl.ACLs.genSecToken();
-                Results = apiHandler.gCRESChannel.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", "e:\\ebbs\\done", secToken);//CRESServiceContract.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", "e:\\ebbs\\done", secToken);
+               
+                Results = apiHandler.gCRESChannel.GetInterFaceFile(caseno, "91,92,93,94,95,96,97", "e:\\ebbs\\done", secToken);
                 if (Results.Count > 0)
                 {
-                    string destfolder = nCaseNo.sDestFolder;//"c:\\xml\\";
+                    string destfolder = CaseNo.DestFolder;//"c:\\xml\\";
                     if (!Directory.Exists(destfolder))
                     {
                         Directory.CreateDirectory(destfolder);
@@ -218,11 +278,11 @@ namespace PSSAKB
 
                         File.WriteAllBytes(Path.Combine(Path.Combine(destfolder, caseno), ff.fileName), ACLs.decryptedFile(ff.encFile, secToken));
                     }
-                    
+                    CaseNo.TotalFiles = string.Format("Total files Retrieved : {0}",Results.Count.ToString());
                 }
                 else
                 {
-
+                    CaseNo.TotalFiles = "There is no files meet the criteria";
                 }
             }
             catch (Exception ex)

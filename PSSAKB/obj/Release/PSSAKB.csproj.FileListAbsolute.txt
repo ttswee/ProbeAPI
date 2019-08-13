@@ -10,13 +10,11 @@ C:\perceiver\PSSAKB\obj\Release\PSSAKB.csproj.GenerateResource.Cache
 C:\perceiver\PSSAKB\bin\Release\PSSAKB.exe
 C:\perceiver\PSSAKB\bin\Release\PSSAKB.pdb
 C:\perceiver\PSSAKB\bin\Release\CRESapi.dll
-C:\perceiver\PSSAKB\bin\Release\PerceiverACL.dll
 C:\perceiver\PSSAKB\bin\Release\PerceiverAPIService.exe
 C:\perceiver\PSSAKB\bin\Release\PerceiverDAL.dll
 C:\perceiver\PSSAKB\bin\Release\FileMaintenance.dll
 C:\perceiver\PSSAKB\bin\Release\DataAccess.dll
 C:\perceiver\PSSAKB\bin\Release\CRESapi.pdb
-C:\perceiver\PSSAKB\bin\Release\PerceiverACL.pdb
 C:\perceiver\PSSAKB\bin\Release\PerceiverAPIService.pdb
 C:\perceiver\PSSAKB\bin\Release\PerceiverDAL.pdb
 C:\perceiver\PSSAKB\bin\Release\FileMaintenance.pdb

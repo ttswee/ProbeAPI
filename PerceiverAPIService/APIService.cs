@@ -131,9 +131,13 @@ namespace PerceiverAPI
                 BasicHttpBinding binding = new BasicHttpBinding();
                 binding.Security.Mode = BasicHttpSecurityMode.None;
                 binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
-                binding.MaxBufferPoolSize = 200000;
-                binding.MaxBufferSize = 200000;
-                binding.MaxReceivedMessageSize = 200000;
+                binding.MaxBufferPoolSize = 2000000;
+                binding.MaxBufferSize = 2000000;
+                binding.MaxReceivedMessageSize = 2000000;
+                binding.OpenTimeout = new TimeSpan(0, 10, 0);
+                binding.CloseTimeout = new TimeSpan(0, 10, 0);
+                binding.SendTimeout = new TimeSpan(0, 10, 0);
+                binding.ReceiveTimeout = new TimeSpan(0, 10, 0);
                 EndpointAddress address = new EndpointAddress(baseaddr);
 
                 Type[] allIface = ServiceType.GetInterfaces();

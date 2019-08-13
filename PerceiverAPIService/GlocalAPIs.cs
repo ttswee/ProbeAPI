@@ -23,6 +23,10 @@ using System.Threading;
 namespace GlobalAPI
 {
     public enum serviceAction { ChangeState = 1, Restart = 2 }
+    public enum ReadDirection { Forward=1,Backward = 2}
+
+ 
+
     public class DriveSpaces
     {
         public string driveLetter { get; set; }
@@ -103,9 +107,17 @@ namespace GlobalAPI
         bool PostRestartService(string ServiceName,serviceAction act);
     }
 
+    [ServiceContract]
+    public interface IFileReader
+    {
+        [OperationContract]
+        List<FileInfo> GetFileList(string folderName);
+        [OperationContract]
+        List<string> GetLogFile(string fileName,int nLines, ReadDirection rDirection);
+    }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
-    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance,IServerAdministration
+    public  class PerceiverAPIs : ISpaceProbe, IFolderMaintenance, IJobMaintenance,IServerAdministration,IFileReader
     {
        
 
@@ -188,13 +200,6 @@ namespace GlobalAPI
 
         public List<Process> GetProcessesComplete()
         {
-            
-            //List<WindowsProcesses> pList = new List<WindowsProcesses>();
-            //Process[] CurrentProcesses = Process.GetProcesses();
-            //foreach (Process pro in CurrentProcesses)
-            //{
-            //    pList.Add(new WindowsProcesses { processName = pro.ProcessName, processResponding = pro.Responding, processThread = (Int16)pro.Threads.Count });
-            //}
             return Process.GetProcesses().ToList();
         }
 
@@ -211,14 +216,12 @@ namespace GlobalAPI
                     sc.Stop();
                     sc.WaitForStatus(ServiceControllerStatus.Stopped);
                     sc.Start();
-                    //sc.WaitForStatus(ServiceControllerStatus.Running);
                     return true;
                 }
                 else
                     if (sc.Status == ServiceControllerStatus.Stopped)
                     {
                         sc.Start();
-                        //sc.WaitForStatus(ServiceControllerStatus.Running);
                         return true;
                     }
                 return false;
@@ -228,18 +231,52 @@ namespace GlobalAPI
                 if (sc.Status == ServiceControllerStatus.Stopped)
                 {
                     sc.Start();
-                    //sc.WaitForStatus(ServiceControllerStatus.Running);
                     return true;
                 }
                 else
                     if (sc.Status == ServiceControllerStatus.Running)
                     {
                         sc.Stop();
-                        //sc.WaitForStatus(ServiceControllerStatus.Running);
                         return true;
                     }
             }
             return true;
+        }
+
+        public List<FileInfo> GetFileList(string folderName)
+        {
+            DirectoryInfo dinfo = new DirectoryInfo(folderName);
+            return dinfo.EnumerateFiles().ToList();
+        }
+
+        public List<string> GetLogFile(string fileName, int nLines, ReadDirection rDirection)
+        {
+            string[] fileContent;
+            fileContent = File.ReadAllLines(fileName);
+            if (rDirection == ReadDirection.Backward)
+            {
+                if (fileContent.Count() < nLines)
+                {
+                    return fileContent.ToList<string>();
+                }
+                else
+                if (fileContent.Count() >= nLines)
+                {
+                    nLines = 0;
+                    return new List<string>(fileContent).GetRange(fileContent.Count() - nLines, nLines);
+                }
+            }
+            else
+            {
+                if (fileContent.Count() < nLines)
+                {
+                    return fileContent.ToList<string>();
+                }
+                return fileContent.Skip(0).Take(nLines).ToList<string>();
+            }
+            return fileContent.ToList<string>();
+
+
         }
     }
 

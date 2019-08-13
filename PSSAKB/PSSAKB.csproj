@@ -122,10 +122,6 @@
       <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
       <Name>CRESapi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PerceiverACL\PerceiverACL.csproj">
-      <Project>{6457c9d6-d51e-4cca-8915-c8ab58d66aa9}</Project>
-      <Name>PerceiverACL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PerceiverAPIService\PerceiverRestfulService.csproj">
       <Project>{79c40a14-f0cb-4482-9710-802cb89aee34}</Project>
       <Name>PerceiverRestfulService</Name>

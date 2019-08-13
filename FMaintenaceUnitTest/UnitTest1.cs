@@ -12,7 +12,7 @@ namespace FMaintenaceUnitTest
             try
             {
                 MSch MJobTest = new MSch();
-                MJobTest._AppPath = "C:\\probeapi\\PerceiverAPIService\\bin\\Release\\";
+                MJobTest._AppPath = "C:\\xml";
                 var newJob = new MaintSch() { JobType = JobType.Delete, SpecificDay = 0, IntervalToKeep = 60, IncludeSubFolder = false, FolderName = "F:\\SCBCRES\\CCMS_MORT\\DONE\\", TargetFolderName = "", JobName = "DELETECCMSMORTDONE", IsJobActive = true, KeepIntervalsType = KeepIntervalType.Days, SpecialDay = SpecialDay.NotInUse, DebugMode = false, FileExt = "*.xml" };
                 Assert.IsTrue(MJobTest.addSchedule(newJob));
                 newJob = new MaintSch() { JobType = JobType.Delete, SpecificDay = 0, IntervalToKeep = 60, IncludeSubFolder = false, FolderName = "F:\\SCBCRES\\EBBS_MORT\\DONE\\", TargetFolderName = "", JobName = "DELETEEBBSDONE", IsJobActive = true, KeepIntervalsType = KeepIntervalType.Days, SpecialDay = SpecialDay.NotInUse, DebugMode = false, FileExt = "*.xml" };
