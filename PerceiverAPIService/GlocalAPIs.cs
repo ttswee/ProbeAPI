@@ -111,9 +111,9 @@ namespace GlobalAPI
     public interface IFileReader
     {
         [OperationContract]
-        List<FileInfo> GetFileList(string folderName);
+        List<FileInfo> getFileList(string folderName);
         [OperationContract]
-        List<string> GetLogFile(string fileName,int nLines, ReadDirection rDirection);
+        List<string> getFileContent(string fileName,int nLines, ReadDirection rDirection);
     }
 
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Reentrant)]
@@ -243,13 +243,13 @@ namespace GlobalAPI
             return true;
         }
 
-        public List<FileInfo> GetFileList(string folderName)
+        public List<FileInfo> getFileList(string folderName)
         {
             DirectoryInfo dinfo = new DirectoryInfo(folderName);
             return dinfo.EnumerateFiles().ToList();
         }
 
-        public List<string> GetLogFile(string fileName, int nLines, ReadDirection rDirection)
+        public List<string> getFileContent(string fileName, int nLines, ReadDirection rDirection)
         {
             string[] fileContent;
             fileContent = File.ReadAllLines(fileName);
@@ -259,12 +259,7 @@ namespace GlobalAPI
                 {
                     return fileContent.ToList<string>();
                 }
-                else
-                if (fileContent.Count() >= nLines)
-                {
-                    nLines = 0;
                     return new List<string>(fileContent).GetRange(fileContent.Count() - nLines, nLines);
-                }
             }
             else
             {
@@ -274,8 +269,7 @@ namespace GlobalAPI
                 }
                 return fileContent.Skip(0).Take(nLines).ToList<string>();
             }
-            return fileContent.ToList<string>();
-
+//
 
         }
     }

@@ -96,8 +96,21 @@ namespace PSSAKB
         }
         public int linesToRead { get; set; }
         public GlobalAPI.ReadDirection readDirection { get; set; }
-        
+        public logFolderList selectedFolder { get; set; }
+        public ReadDir selectedDirection { get; set; }
     }
-
+    public class logFolderList
+    {
+        public string folderName { get; set; }
+    }
+    public class ReadDir
+    {
+        public GlobalAPI.ReadDirection rdirect {get;set;}
+    }
+    public class comboItems
+    {
+        public List<logFolderList> folderList { get; set; }
+        public List<GlobalAPI.ReadDirection> rdirect { get; set; }
+    }
 
 }

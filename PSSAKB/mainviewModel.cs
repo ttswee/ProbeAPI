@@ -98,6 +98,19 @@ namespace PSSAKB
             }
         }
 
+        private comboItems _folderOptions;
+        public comboItems folderOptions
+        {
+            get { return _folderOptions; }
+            set
+            {
+                if (_folderOptions != value)
+                {
+                    _folderOptions = value;
+                }
+            }
+        }
+
 
         public mainViewModel()
         {
@@ -106,6 +119,16 @@ namespace PSSAKB
             lContent = new logContent();
             //lContent = new logContent { fList = apiHandler.gFileReader.GetFileList("c:\\ga") };
             //lContent = new logContent { fList = new List<FileInfo>() };
+
+
+            folderOptions =new comboItems();
+            List<GlobalAPI.ReadDirection> rdire = Enum.GetValues(typeof(ReadDirection)).Cast<ReadDirection>().ToList();
+            folderOptions.rdirect = rdire;
+            List<logFolderList> defCombo = new List<logFolderList>();
+            defCombo.Add(new logFolderList{folderName="e:\\ebbs\\log"});
+            defCombo.Add(new logFolderList{folderName="e:\\rls\\log"});
+            defCombo.Add(new logFolderList { folderName = "e:\\rls_icdd\\log" });
+            folderOptions.folderList = defCombo;
             CaseNo = new XMLCaseNo { CaseNo = "1234", DestFolder = "c:\\xml" , TotalFiles="Waiting"};
             
             sqlToExecute = new sqlStatmentHandler();
@@ -210,13 +233,10 @@ namespace PSSAKB
             string secToken = acl.ACLs.genSecToken();
             totalrecord = apiHandler.gCRESChannel.UpdateQueues(sqlToExecute.sSqlStatement , secToken);
             sqlToExecute.totalRecords = string.Format("Total updated records : {0}", totalrecord);
-            //MessageBox.Show(string.Format("Total records affected : {0}",totalrecord));
         }
 
         private void startstopService(object sender)
         {
-            //todo : call the api to restart the service
-
             var process = (GlobalAPI.WindowsServices) sender;
                 bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.ChangeState);
                 processstatus = new winProcesses { allProcesses = apiHandler.gChannel.GetProcesses() };
@@ -224,8 +244,6 @@ namespace PSSAKB
 
         private void RestartService(object sender)
         {
-            //todo : call the api to restart the service
-
             var process = (GlobalAPI.WindowsServices)sender;
                 bool restarted = apiHandler.gChannel.PostRestartService(process.serviceName,serviceAction.Restart);
             
@@ -233,17 +251,13 @@ namespace PSSAKB
 
         private void FileListGetExec(object obj)
         {
-            //var results = apiHandler.gFileReader.GetFileList("c:\\ga");
-            //lContent.fList = new List<FileInfo>();
-            lContent.fList = apiHandler.gFileReader.GetFileList("e:\\ebbs\\log");
-            
-            //lContent.fList = results;
+            lContent.fList = apiHandler.gFileReader.getFileList(lContent.selectedFolder.folderName);
         }
 
         private void getLogs(object sender)
         {
             var logc = (FileInfo)sender;
-            var contents = apiHandler.gFileReader.GetLogFile(logc.FullName, lContent.linesToRead , ReadDirection.Forward);
+            var contents = apiHandler.gFileReader.getFileContent(logc.FullName, lContent.linesToRead , ReadDirection.Backward);
             lContent.LogFileLines = "";
             foreach (string cnt in contents)
             {
